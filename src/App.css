@@ -11,6 +11,12 @@ body{
   max-width: 1170px;
 }
 
+a{
+  color: #000;
+  text-decoration: none;
+}
+
 .title-font{
   font-family: 'Barlow Condensed', sans-serif;
 }
+

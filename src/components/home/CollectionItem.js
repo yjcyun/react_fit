@@ -6,7 +6,7 @@ const CollectionItem = ({ title, imageUrl, desc, history, linkUrl, match }) => {
   return (
     <StyledCollectionItem
       onClick={() => history.push(`${match.url}${linkUrl}`)}>
-      <img className="category-img" src={imageUrl} />
+      <img className="category-img" alt="category" src={imageUrl} />
       <h2 className="title-font">{title.toUpperCase()}</h2>
       <p className="desc">{desc.toUpperCase()}</p>
     </StyledCollectionItem>
