@@ -16,7 +16,16 @@ a{
   text-decoration: none;
 }
 
+img {
+  width: 100%;
+}
+
 .title-font{
   font-family: 'Barlow Condensed', sans-serif;
+  margin-bottom: 2rem;
+}
+
+.layout {
+  display: flex
 }
 

@@ -1,10 +1,12 @@
 import React from 'react';
-import Directory from '../components/home/Directory';
+import CollectionDirectory from '../components/home/CollectionDirectory';
+import SideNav from '../components/home/SideNav';
 
 const Home = () => {
   return (
-    <div>
-      <Directory />
+    <div className="layout">
+      <SideNav />
+      <CollectionDirectory />
     </div>
   )
 }

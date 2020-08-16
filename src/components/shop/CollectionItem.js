@@ -28,12 +28,6 @@ text-align:center;
       padding-top: 1rem;
     }
   }
-
-  @media (min-width: 768px){
-    .image{
-    height: 350px;
-    }
-  }
  
 `
 

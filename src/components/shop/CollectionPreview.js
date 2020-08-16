@@ -8,7 +8,7 @@ const CollectionPreview = ({ title, items }) => {
     <StyledCollectionPreview>
       <h1>{title}</h1>
       <div className="collection-container" >
-        {items.filter((item, i) => i < 4).map(({ id, ...otherProps }) => (
+        {items.map(({ id, ...otherProps }) => (
           <CollectionItem key={id} {...otherProps} />
         ))}
       </div>
@@ -17,12 +17,7 @@ const CollectionPreview = ({ title, items }) => {
 }
 
 const StyledCollectionPreview = styled.div`
-  .collection-container{
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    grid-gap: 1rem;
-    margin-bottom: 5rem;
-  }
+
 `;
 
 export default CollectionPreview

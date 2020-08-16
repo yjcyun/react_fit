@@ -1,22 +1,22 @@
 import React from 'react'
 import styled from 'styled-components';
 
-const CustomButton = ({children, ...otherProps}) => {
+const CustomButton = ({ children, inverse }) => {
   return (
-    <StyledButton {...otherProps}>
+    <StyledButton inverse={inverse}>
       {children}
     </StyledButton>
   )
 }
 
 const StyledButton = styled.button`
-  min-width: 13rem;
+  min-width: 15rem;
   width: auto;
-  height: 2.5rem;
+  padding: 1rem 3rem;
   letter-spacing: 0.1rem;
   text-transform: uppercase;
-  background-color: #000;
-  color: #fff;
+  background-color: ${props => props.inverse ? '#fff' : '#000'};
+  color: ${props => props.inverse ? '#000' : '#fff'};
   font-weight:bold;
   border: none;
   cursor: pointer;

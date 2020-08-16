@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SHOP_DATA from '../data/shopData';
 import CollectionPreview from '../components/shop/CollectionPreview';
+import SideNav from '../components/home/SideNav';
 
 class Shop extends Component {
   state = {
@@ -12,7 +13,8 @@ class Shop extends Component {
     console.log(collections);
 
     return (
-      <div>
+      <div className="layout">
+        <SideNav />
         {collections.map(({ id, ...otherProps }) => {
           return (
             <CollectionPreview key={id} {...otherProps} />
