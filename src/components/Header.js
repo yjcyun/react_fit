@@ -11,7 +11,7 @@ const Header = ({ currentUser, hidden }) => {
   return (
     <StyledHeader>
       <Link className="logo-container" to="/">
-        <Logo style={{ width: '40px' }} />
+        <Logo style={{ width: '40px', height:'40px' }} />
       </Link>
       <div className="nav-links">
         <Link className="nav-item" to="/shop">SHOP</Link>

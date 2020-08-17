@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const CustomButton = ({ children, isGoogleSignIn, inverse, ...otherProps }) => {
   return (
-    <StyledButton inverse={inverse} {...otherProps} className={`${isGoogleSignIn ? 'google-sign-in' : ''}`}>
+    <StyledButton inverse={inverse} {...otherProps} className={`${isGoogleSignIn ? 'google-sign-in' : ''} custom-button`}>
       {children}
     </StyledButton>
   )

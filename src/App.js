@@ -47,7 +47,7 @@ class App extends Component {
         <Header />
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route path='/shop' component={Shop} />
+          <Route path='/shop/:id' component={Shop} />
           <Route
             exact path='/signin'
             render={() => this.props.currentUser
