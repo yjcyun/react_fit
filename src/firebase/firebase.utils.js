@@ -4,9 +4,9 @@ import 'firebase/auth';
 import 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBGpfvsajpLcDnElffS8a7E2gW-yJiCgJo",
-  authDomain: "outdoor-ecommerce.firebaseapp.com",
-  databaseURL: "https://outdoor-ecommerce.firebaseio.com",
+  apiKey: process.env.REACT_APP_FIREBASE_API,
+  authDomain: process.env.REACT_APP_FIREBASE_DOMAIN,
+  databaseURL: process.env.REACT_APP_FIREBASE_DB,
   projectId: "outdoor-ecommerce",
   storageBucket: "outdoor-ecommerce.appspot.com",
   messagingSenderId: "629116165441",
@@ -14,20 +14,21 @@ const firebaseConfig = {
   measurementId: "G-8J5DZH78Q0"
 };
 
-export const createUserProfileDocument = async(userAuth, additionalData) =>{
-  if(!userAuth) return;
+// export const createUserProfileDocument = async(userAuth, additionalData) =>{
+//   if(!userAuth) return;
 
-  console.log(firestore.doc('users/allakj2lkdjf'));
-}
+//   console.log(firestore.doc('users/allakj2lkdjf'));
+// }
 
 firebase.initializeApp(firebaseConfig);
 
-export const auth = firebase.auth();
-export const firestore = firebase.firestore();
+export const auth = firebase.auth(); //Firebase authentication
+export const firestore = firebase.firestore(); //Firebase database
 
 // https://firebase.google.com/docs/auth/web/google-signin
+// trigger Google pop-up 
 const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({prompt: 'select_account'});
+provider.setCustomParameters({prompt: 'select_account'}); 
 
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
 export default firebase;

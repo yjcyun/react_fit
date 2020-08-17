@@ -22,8 +22,8 @@ class SignIn extends Component {
 
   render() {
     return (
-      <div>
-        <h2>Sign In</h2>
+      <StyledSignIn>
+        <h2 className="title-font">SIGN IN</h2>
         <span>Sign in with your email and password</span>
 
         <form onSubmit={this.handleFormSubmit}>
@@ -33,7 +33,7 @@ class SignIn extends Component {
             type="email"
             name="email"
             value={this.state.email}
-            required 
+            required
           />
           <FormInput
             handleChange={this.handleInputChange}
@@ -41,14 +41,33 @@ class SignIn extends Component {
             type="password"
             name="password"
             value={this.state.password}
-            required 
+            required
           />
-          <CustomButton type="submit">Sign In</CustomButton>
-          <CustomButton onClick={signInWithGoogle} type="submit">Sign In with Google</CustomButton>
+          <div className="button-container">
+            <CustomButton type="submit">Sign In</CustomButton><br/>
+            <CustomButton onClick={signInWithGoogle} isGoogleSignIn>
+              Sign in with Google
+            </CustomButton>
+          </div>
         </form>
-      </div>
+      </StyledSignIn>
     )
   }
 }
 
+const StyledSignIn = styled.div`
+  flex: 1;
+
+  .button-container {
+    display:flex; 
+    flex-direction:column;
+    justify-content: space-between;
+  }
+
+  @media (min-width: 768px){
+    .button-container{
+      flex-direction: row;
+    }
+  }
+`;
 export default SignIn
