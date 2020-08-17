@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import CustomButton from '../CustomButton';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
+import CartItem from './CartItem';
 
-const CartDropdown = () => {
+const CartDropdown = ({ cartItems }) => {
   return (
     <StyledCartMenu>
-      <div className="cart-items" />
+      <div className="cart-items">
+        {
+          cartItems.map(cartItem =>
+            <CartItem key={cartItem.id} item={cartItem} />)
+        }
+      </div>
       <CustomButton>GO TO CHECKOUT</CustomButton>
 
     </StyledCartMenu>
@@ -33,4 +40,7 @@ const StyledCartMenu = styled.section`
   }
 `;
 
-export default CartDropdown
+const mapStateToProps = ({ cart: { cartItems } }) => ({
+  cartItems
+})
+export default connect(mapStateToProps)(CartDropdown)
