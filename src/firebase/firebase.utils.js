@@ -14,11 +14,32 @@ const firebaseConfig = {
   measurementId: "G-8J5DZH78Q0"
 };
 
-// export const createUserProfileDocument = async(userAuth, additionalData) =>{
-//   if(!userAuth) return;
+// API request
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+  if (!userAuth) return;
 
-//   console.log(firestore.doc('users/allakj2lkdjf'));
-// }
+  const userRef = firestore.doc(`users/${userAuth.uid}`);
+  const snapShot = await userRef.get();
+
+  // create if user doesn't exist
+  if (!snapShot.exists) {
+    const { displayName, email } = userAuth;
+    const createdAt = new Date();
+
+    try {
+      await userRef.set({
+        displayName,
+        email,
+        createdAt,
+        ...additionalData
+      });
+    } catch (err) {
+      console.log('Error creating user', err.message);
+    }
+  }
+
+  return userRef;
+}
 
 firebase.initializeApp(firebaseConfig);
 
@@ -28,7 +49,7 @@ export const firestore = firebase.firestore(); //Firebase database
 // https://firebase.google.com/docs/auth/web/google-signin
 // trigger Google pop-up 
 const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({prompt: 'select_account'}); 
+provider.setCustomParameters({ prompt: 'select_account' });
 
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
 export default firebase;

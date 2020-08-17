@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { auth } from './firebase/firebase.utils';
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import Home from './pages/Home';
 import Shop from './pages/Shop';
 import './App.css';
@@ -18,10 +18,24 @@ class App extends Component {
   componentDidMount() {
     // open subscription - user(parameter) is the current user
     // persists until user logs out
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-      this.setState({ currentUser: user });
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
 
-      console.log(user)
+        userRef.onSnapshot(snapShot => {
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data()
+            }
+          });
+          console.log(this.state);
+        });
+
+      } else {
+        // if user logs out
+        this.setState({currentUser: userAuth})
+      }
     });
   }
 

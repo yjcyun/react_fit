@@ -16,9 +16,10 @@ const StyledSignIn = styled.section`
   display:flex;
   flex-direction: column;
 
-  @media (min-width: 768px){
+  @media (min-width: 768px) {
     flex-direction: row;
   }
+
 `;
 
 export default SignInAndRegister

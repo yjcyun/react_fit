@@ -10,9 +10,8 @@ const CustomButton = ({ children, isGoogleSignIn, inverse, ...otherProps }) => {
 }
 
 const StyledButton = styled.button`
-  min-width: 15rem;
-  width: auto;
-  padding: 1rem 3rem;
+  width: 100%;
+  padding: 1rem 2rem;
   letter-spacing: 0.1rem;
   text-transform: uppercase;
   background-color: ${props => props.inverse ? '#fff' : '#000'};
@@ -36,5 +35,10 @@ const StyledButton = styled.button`
     background-color: #357ae8;
     border:none
   }
+
+  @media (min-width: 800px){
+    width: auto;
+  }
+  
 `
 export default CustomButton
