@@ -2,14 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { auth } from '../firebase/firebase.utils';
-import { ReactComponent as Logo } from '../assets/crown.svg';
+import { ReactComponent as Logo } from '../assets/hoodie.svg';
 import styled from 'styled-components';
+import CartIcon from './cart/CartIcon';
+import CartDropdown from './cart/CartDropdown';
 
-const Header = ({ currentUser }) => {
+const Header = ({ currentUser, hidden }) => {
   return (
     <StyledHeader>
       <Link className="logo-container" to="/">
-        <Logo />
+        <Logo style={{ width: '40px' }} />
       </Link>
       <div className="nav-links">
         <Link className="nav-item" to="/shop">SHOP</Link>
@@ -20,12 +22,17 @@ const Header = ({ currentUser }) => {
               SIGN OUT</div>
             : <Link className="nav-item" to='/signin'>SIGN IN</Link>
         }
+        <CartIcon />
       </div>
+      {
+        hidden ? null : <CartDropdown />
+      }
     </StyledHeader>
   )
 }
 
 const StyledHeader = styled.nav`
+  position:relative;
   height: 5rem;
   width: 100%;
   display:flex;
@@ -34,17 +41,20 @@ const StyledHeader = styled.nav`
   margin-bottom: 2rem;
 
   .nav-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .nav-item{
-    display: inline-block;
     margin: 0 1rem;
     cursor: pointer;
   }
 `;
 
-const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser
+const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
+  currentUser,
+  hidden
 });
 
 export default connect(mapStateToProps)(Header)
