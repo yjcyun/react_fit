@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import CustomButton from '../CustomButton';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
