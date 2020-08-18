@@ -2,7 +2,7 @@ const SHOP_DATA = [
   {
     id: 1,
     title: 'Tank Tops',
-    routeName: 'tank-tops',
+    routeName: 'tops',
     items: [
       {
         id: 1,
@@ -112,7 +112,7 @@ const SHOP_DATA = [
   {
     id: 3,
     title: 'Active Dresses',
-    routeName: 'active-dresses',
+    routeName: 'dresses',
     items: [
       {
         id: 18,

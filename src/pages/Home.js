@@ -1,8 +1,8 @@
 import React from 'react';
-import CollectionDirectory from '../components/home/CollectionDirectory';
 import SideNav from '../components/home/SideNav';
+import CollectionDirectory from '../components/home/CollectionDirectory';
 
-const Home = () => {
+const Home = ({ match }) => {
   return (
     <div className="layout">
       <SideNav />

@@ -3,11 +3,11 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setCurrentUser } from './redux/user/userActions';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
-import Home from './pages/Home';
 import Shop from './pages/Shop';
 import './App.css';
 import Header from './components/Header';
 import SignInAndRegister from './pages/SignInAndRegister';
+import Home from './pages/Home';
 
 class App extends Component {
   // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#onauthstatechanged
@@ -47,7 +47,8 @@ class App extends Component {
         <Header />
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route path='/shop/:id' component={Shop} />
+          <Route path='/shop' component={Shop} />
+         
           <Route
             exact path='/signin'
             render={() => this.props.currentUser

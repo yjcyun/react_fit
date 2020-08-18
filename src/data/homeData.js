@@ -12,7 +12,7 @@ const homeData =  [
     imageUrl: 'https://i.ibb.co/FKFSrnc/home-tank-top.jpg',
     size: 'square',
     id: 2,
-    linkUrl: 'shop/tank-tops',
+    linkUrl: 'shop/tops',
     button: 'shop tank tops'
   },
   {

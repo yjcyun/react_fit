@@ -1,28 +1,18 @@
-import React, { Component } from 'react';
-import SHOP_DATA from '../data/shopData';
-import CollectionPreview from '../components/shop/CollectionPreview';
+import React from 'react';
+import { Route } from 'react-router-dom';
 import SideNav from '../components/home/SideNav';
+import CollectionsOverview from '../components/home/CollectionsOverview';
+import Collections from './Collections';
 
-class Shop extends Component {
-  state = {
-    collections: SHOP_DATA
-  };
-
-  render() {
-    const { collections } = this.state;
-    console.log(collections);
-
-    return (
-      <div className="layout">
-        <SideNav />
-        {collections.map(({ id, ...otherProps }) => {
-          return (
-            <CollectionPreview key={id} {...otherProps} />
-          )
-        })}
-      </div>
-    )
-  }
+const Shop = ({ match }) => {
+  return (
+    <div className="layout">
+      <Route exact path={`${match.path}`} component={CollectionsOverview} />
+      <Route path={`${match.path}/:collectionId`} component={Collections} />
+    </div>
+  )
 }
 
-export default Shop
+
+
+export default Shop;

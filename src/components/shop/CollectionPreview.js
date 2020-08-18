@@ -3,12 +3,12 @@ import CollectionItem from './CollectionItem';
 import styled from 'styled-components';
 
 
-const CollectionPreview = ({ title, items }) => {
+const CollectionPreview = ({ title, items}) => {
   return (
     <StyledCollectionPreview>
-      {/* <h1>{title}</h1> */}
+      <h1></h1>
       <div className="collection-container" >
-        {items.filter(i => i.id).map((item) => (
+        {items.map((item) => (
           <CollectionItem key={item.id} item={item} />
         ))}
       </div>
@@ -17,12 +17,13 @@ const CollectionPreview = ({ title, items }) => {
 }
 
 const StyledCollectionPreview = styled.div`
-   .collection-container{
-    display:grid;
-    /* grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); */
-    grid-gap: 1rem;
-    cursor: pointer;
-  }
+    display:flex;
+    flex-direction: column;
+
+    .collection-container {
+      display:flex;
+    }
+
 `;
 
 export default CollectionPreview

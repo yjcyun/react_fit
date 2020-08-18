@@ -6,6 +6,7 @@ import CustomButton from '../CustomButton';
 
 const CollectionItem = ({ item, addItem }) => {
   const { name, imageUrl, price } = item;
+  
   return (
     <StyledCollectionItem>
       <div className="image-container">
