@@ -1,35 +1,30 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { selectHomeSections } from '../../redux/home/homeSelectors';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
-import HOME_DATA from '../../data/homeData';
 import CustomButton from '../CustomButton';
 
-class CollectionDirectory extends Component {
-  state = {
-    collections: HOME_DATA
-  };
-
-  render() {
-    const { history, match } = this.props;
-    return (
-      <StyledDirectory>
-        <h1 className="title-font title">WOMEN'S ACTIVE CLOTHING & GEAR</h1>
-        <div className="directory">
-          {this.state.collections.map(({ id, imageUrl, button, linkUrl, size }) => {
-            return (
-              <div key={id} className="collection-content"
-                onClick={() => history.push(`${match.url}${linkUrl}`)}>
-                <img className="category-img" alt="category" src={imageUrl} />
-                <div className="button-container">
-                  <CustomButton inverse>{button}</CustomButton>
-                </div>
+const CollectionDirectory = ({ history, match, sections }) => {
+  return (
+    <StyledDirectory>
+      <h1 className="title-font title">WOMEN'S ACTIVE CLOTHING & GEAR</h1>
+      <div className="directory">
+        {sections.map(({ id, imageUrl, button, linkUrl}) => {
+          return (
+            <div key={id} className="collection-content"
+              onClick={() => history.push(`${match.url}${linkUrl}`)}>
+              <img className="category-img" alt="category" src={imageUrl} />
+              <div className="button-container">
+                <CustomButton inverse>{button}</CustomButton>
               </div>
-            )
-          })}
-        </div>
-      </StyledDirectory>
-    )
-  }
+            </div>
+          )
+        })}
+      </div>
+    </StyledDirectory>
+  )
 }
 
 const StyledDirectory = styled.section`
@@ -62,4 +57,7 @@ const StyledDirectory = styled.section`
   }
 `;
 
-export default withRouter(CollectionDirectory);
+const mapStateToProps = createStructuredSelector({
+  sections: selectHomeSections
+})
+export default withRouter(connect(mapStateToProps)(CollectionDirectory));
