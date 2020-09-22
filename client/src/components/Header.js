@@ -17,7 +17,6 @@ const Header = ({ currentUser, hidden }) => {
         <Logo style={{ width: '40px', height: '40px' }} />
       </Link>
       <div className="nav-links">
-        <Link className="nav-item" to="/shop">SHOP</Link>
         <Link className="nav-item" to="/contact">CONTACT</Link>
         {
           currentUser
