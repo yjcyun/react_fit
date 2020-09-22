@@ -8,7 +8,7 @@ const User = require('../models/userModel');
 exports.signup = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
+    return res.status(401).json({ errors: errors.array() });
   }
 
   const { name, email, password } = req.body;
@@ -43,10 +43,58 @@ exports.signup = async (req, res) => {
       { expiresIn: 360000 },
       (err, token) => {
         if (err) throw err;
-        res.status(200).json({ token })
+        res.status(201).json({ token })
       }
     )
 
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send('Server Error')
+  }
+}
+
+// LOGIN CONTROLLER //
+exports.login = async (req, res) => {
+  // 1) CHECK VALIDATION
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res
+      .status(401)
+      .json({ errors: errors.array() });
+  }
+  // 2) CHECK IF USER EXISTS
+  const { email, password } = req.body;
+  try {
+    let user = await User.findOne({ email });
+
+    if (!user) {
+      return res
+        .status(401)
+        .json({ errors: [{ msg: 'Invalid Credentials' }] });
+    }
+    // 3) COMPARE INPUT PASSWORD & ENCRYPTED PASSWORD
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res
+        .status(401)
+        .json({ errors: [{ msg: 'Invalid Credentials' }] });
+    }
+    // 4) RETURN JSON WEB TOKEN
+    const payload = {
+      user: {
+        id: user.id
+      }
+    };
+
+    jwt.sign(
+      payload,
+      config.get('jwtSecret'),
+      { expiresIn: 360000 },
+      (err, token) => {
+        if (err) throw err;
+        res.status(201).json({ token });
+      }
+    )
   } catch (err) {
     console.log(err.message);
     res.status(500).send('Server Error')
