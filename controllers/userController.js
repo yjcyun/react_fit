@@ -4,6 +4,16 @@ const config = require('config');
 const { validationResult } = require('express-validator');
 const User = require('../models/userModel');
 
+// GET LOGGED IN USER //
+exports.getUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select('-password');
+    res.status(200).json(user);
+  } catch (err) {
+    res.status(500).send('Server Error');
+  }
+}
+
 // SIGN UP CONTROLLER //
 exports.signup = async (req, res) => {
   const errors = validationResult(req);
