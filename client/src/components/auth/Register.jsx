@@ -24,13 +24,7 @@ const Register = ({ registerUser, showAlert, isAuthenticated }) => {
   // HANDLE FORM SUBMIT
   const onFormSubmit = e => {
     e.preventDefault();
-    if (!name || !email || !password || !password2) {
-      showAlert('All fields are required.', 'danger');
-    }
-    if (password !== password2) {
-      showAlert('Passwords do not match.', 'danger');
-    }
-    registerUser({ name, email, password });
+    registerUser({ name, email, password, password2 });
   }
 
   // REDIRECT IF LOGGED IN

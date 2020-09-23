@@ -15,7 +15,7 @@ router.get('/', auth, userController.getUser);
 // @desc    REGISTER USER
 // @access  Public
 router.post('/signup', [
-  check('name', 'Name is required').not().isEmpty(),
+  check('name', 'Please provide a name').not().isEmpty(),
   check('email', 'Please include a valid email').isEmail(),
   check('password', 'Please enter a password with 6 or more characters').isLength({ min: 6 })
 ], userController.signup);
@@ -26,7 +26,7 @@ router.post('/signup', [
 // @access  Public
 router.post('/login', [
   check('email', 'Please include a valid email').isEmail(),
-  check('password', 'Password is required').exists()
+  check('password', 'Please provide a valid password').exists()
 ], userController.login);
 
 module.exports = router

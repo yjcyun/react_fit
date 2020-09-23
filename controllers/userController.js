@@ -16,12 +16,13 @@ exports.getUser = async (req, res) => {
 
 // SIGN UP CONTROLLER //
 exports.signup = async (req, res) => {
+
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(401).json({ errors: errors.array() });
   }
 
-  const { name, email, password } = req.body;
+  const { name, email, password, password2 } = req.body;
 
   try {
     // 1) CHECK IF USER EXSITS
@@ -33,9 +34,18 @@ exports.signup = async (req, res) => {
         }]
       })
     }
+    // 2) CHECK IF PASSWORDS MATCH
+    if(password !== password2) {
+      return res.status(401).json({
+        errors:[{
+          msg: 'Passwords must match'
+        }]
+      })
+    }
+  
     // 2) CREATE NEW INSTANCE OF USER
     user = new User({
-      name, email, password
+      name, email, password, password2
     })
     // 3) ENCRYPT PASSWORD
     const salt = await bcrypt.genSalt(10);
@@ -80,14 +90,14 @@ exports.login = async (req, res) => {
     if (!user) {
       return res
         .status(401)
-        .json({ errors: [{ msg: 'Invalid Credentials' }] });
+        .json({ errors: [{ msg: 'Incorrect email or password.' }] });
     }
     // 3) COMPARE INPUT PASSWORD & ENCRYPTED PASSWORD
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res
         .status(401)
-        .json({ errors: [{ msg: 'Invalid Credentials' }] });
+        .json({ errors: [{ msg: 'Incorrect email or password.' }] });
     }
     // 4) RETURN JSON WEB TOKEN
     const payload = {

@@ -31,7 +31,7 @@ const LoginRegister = ({ children, title, desc }) => {
 const LoginRegisterStyled = styled.section`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  margin: 2rem auto 7rem;
+  margin: 0 auto 7rem;
   h2 {
     font-weight: 400;
     font-size: 2rem;
@@ -39,7 +39,7 @@ const LoginRegisterStyled = styled.section`
     text-transform: capitalize;
   } 
   @media (min-width: 768px) {
-    margin: 5rem auto 8rem;
+    margin: 2rem auto 8rem;
   }
 `
 

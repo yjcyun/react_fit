@@ -28,14 +28,14 @@ export const loadUser = () => async dispatch => {
 }
 
 // REGISTER USER
-export const registerUser = ({ name, email, password }) => async dispatch => {
+export const registerUser = ({ name, email, password, password2 }) => async dispatch => {
   // 1) TRANSFORM FORM DATA
   const config = {
     headers: {
       'Content-Type': 'application/json'
     }
   };
-  const body = JSON.stringify({ name, email, password });
+  const body = JSON.stringify({ name, email, password, password2 });
 
   try {
     // 2) SEND POST REQUEST
@@ -61,7 +61,7 @@ export const login = ({ email, password }) => async dispatch => {
     }
   };
   const body = JSON.stringify({ email, password });
-  
+
   try {
     // 2) SEND POST REQUEST
     const res = await axios.post('/api/v1/users/login', body, config);

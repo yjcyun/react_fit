@@ -22,9 +22,6 @@ const Login = ({ showAlert, login, isAuthenticated }) => {
   // HANDLE FORM SUBMIT
   const onFormSubmit = e => {
     e.preventDefault();
-    if (!email || !password) {
-      showAlert('All fields are required.', 'danger');
-    }
     login({ email, password });
   }
 
