@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import './App.css';
+import { loadUser } from './redux/action/authAction';
+import { setAuthToken } from './redux/utils/setAuthToken';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Alert from './components/layout/Alert';
 import Navbar from './components/layout/Navbar';
+import './App.css';
 
-const App = () => {
+const App = ({loadUser}) => {
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+  }
+
+  useEffect(() => {
+    loadUser();
+  }, [loadUser]);
 
   return (
     <BrowserRouter>
@@ -22,4 +32,4 @@ const App = () => {
   );
 }
 
-export default App;
+export default connect(null, { loadUser })(App);

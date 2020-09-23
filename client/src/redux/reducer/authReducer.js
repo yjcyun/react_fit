@@ -37,7 +37,6 @@ export const authReducer = (state = INITIAL_STATE, action) => {
         loading: false
       }
 
-
     case AUTH_ERROR:
     case REGISTER_FAIL:
     case LOGIN_FAIL:
