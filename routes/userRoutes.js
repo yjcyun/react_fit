@@ -5,13 +5,13 @@ const auth = require('../middlewares/auth')
 
 const router = express.Router();
 
-// @route   GET api/users
+// @route   GET api/v1/users
 // @desc    GET LOGGED IN USER
 // @access  PRIVATE
 router.get('/', auth, userController.getUser);
 
 
-// @route   POST api/users/signup
+// @route   POST api/v1/users/signup
 // @desc    REGISTER USER
 // @access  Public
 router.post('/signup', [
@@ -21,7 +21,7 @@ router.post('/signup', [
 ], userController.signup);
 
 
-// @route   POST api/users/login
+// @route   POST api/v1/users/login
 // @desc    REGISTER USER
 // @access  Public
 router.post('/login', [
