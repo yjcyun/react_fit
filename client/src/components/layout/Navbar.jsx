@@ -14,7 +14,8 @@ const Navbar = () => {
         <Link to='/'>React Fit & Co.</Link>
       </LogoStyled>
       <LogInAndCart>
-        <li><Link to='/my-account'>Login/Register</Link></li>
+        <li className='login-register'><Link to='/my-account/login'>Login</Link></li>/
+        <li className='login-register'><Link to='/my-account/register'>Register</Link></li>
         <li><FiShoppingCart />0</li>
       </LogInAndCart>
     </NavbarStyled>
@@ -45,6 +46,9 @@ const LogoStyled = styled.div`
 `
 const LogInAndCart = styled.ul`
   display: flex;
+ .login-register {
+   margin: 0;
+ }
 `
 
 export default Navbar

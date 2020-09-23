@@ -3,9 +3,13 @@
 :root {
   --primary-clr: #45a0a1;
   --dark-clr: #0a0a0a;
+  --text-clr: #4c4c4c;
+  --red-clr: tomato;
   --light-clr: #ffffff;
   --primary-ff: 'Karla', sans-serif;
   --title-ff: 'Poppins', sans-serif;
+  --input-border: 1px solid rgba(129, 129, 129, 0.25);
+  --input-focus-border: 1px solid rgba(129, 129, 129, 0.8);
 }
 
 * {
@@ -17,6 +21,7 @@
 body {
   font-family: var(--primary-ff);
   background-color: var(--light-clr);
+  line-height: 1.5;
 }
 
 a {
@@ -30,6 +35,25 @@ ul {
 
 img {
   width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: var(--dark-clr);
+}
+
+p {
+  color: var(--text-clr);
+}
+
+input:focus,
+button:focus,
+button:active {
+  outline: none;
+  border: var(--input-focus-border);
 }
 
 .container {

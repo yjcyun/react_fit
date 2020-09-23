@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom'
 import './App.css';
-import LoginRegister from './components/auth/LoginRegister';
+import Login from './components/auth/Login';
+import Register from './components/auth/Register';
 import Navbar from './components/layout/Navbar';
 
 const App = () => {
@@ -9,7 +10,10 @@ const App = () => {
   return (
     <BrowserRouter>
       <Navbar />
-      <Route exact path='/my-account' component={LoginRegister}/>
+      <main className='container'>
+        <Route exact path='/my-account/login' component={Login} />
+        <Route exact path='/my-account/register' component={Register} />
+      </main>
     </BrowserRouter>
   );
 }
