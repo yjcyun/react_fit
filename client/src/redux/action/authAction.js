@@ -1,5 +1,13 @@
 import axios from 'axios';
-import { AUTH_ERROR, REGISTER_FAIL, REGISTER_SUCCESS, USER_LOADED } from '../type';
+import {
+  AUTH_ERROR,
+  LOGIN_FAIL,
+  LOGIN_SUCCESS,
+  LOGOUT,
+  REGISTER_FAIL,
+  REGISTER_SUCCESS,
+  USER_LOADED
+} from '../type';
 import { setAuthToken } from '../utils/setAuthToken';
 import { showAlert } from './alertAction';
 
@@ -43,4 +51,34 @@ export const registerUser = ({ name, email, password }) => async dispatch => {
     }
     dispatch({ type: REGISTER_FAIL });
   }
+}
+
+export const login = ({ email, password }) => async dispatch => {
+  // 1) TRANSFORM DATA
+  const config = {
+    headers: {
+      'Content-type': 'application/json'
+    }
+  };
+  const body = JSON.stringify({ email, password });
+  
+  try {
+    // 2) SEND POST REQUEST
+    const res = await axios.post('/api/v1/users/login', body, config);
+    dispatch({ type: LOGIN_SUCCESS, payload: res.data });
+    dispatch(loadUser());
+
+  } catch (err) {
+    // 3) DISPATCH ALERT
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach(error => dispatch(showAlert(error.msg, 'danger')));
+    }
+    dispatch({ type: LOGIN_FAIL });
+  }
+}
+
+export const logout = () => async dispatch => {
+  dispatch({ type: LOGOUT });
+  dispatch(showAlert('You are now logged out', 'danger'));
 }

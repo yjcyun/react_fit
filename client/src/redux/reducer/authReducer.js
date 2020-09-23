@@ -1,4 +1,12 @@
-import { AUTH_ERROR, REGISTER_FAIL, REGISTER_SUCCESS, USER_LOADED } from "../type";
+import {
+  AUTH_ERROR,
+  LOGIN_FAIL,
+  LOGIN_SUCCESS,
+  LOGOUT,
+  REGISTER_FAIL,
+  REGISTER_SUCCESS,
+  USER_LOADED
+} from "../type";
 
 const INITIAL_STATE = {
   token: localStorage.getItem('token'),
@@ -20,6 +28,7 @@ export const authReducer = (state = INITIAL_STATE, action) => {
       }
 
     case REGISTER_SUCCESS:
+    case LOGIN_SUCCESS:
       localStorage.setItem('token', payload.token);
       return {
         ...state,
@@ -31,6 +40,8 @@ export const authReducer = (state = INITIAL_STATE, action) => {
 
     case AUTH_ERROR:
     case REGISTER_FAIL:
+    case LOGIN_FAIL:
+    case LOGOUT:
       localStorage.removeItem('token');
       return {
         ...state,
@@ -38,6 +49,7 @@ export const authReducer = (state = INITIAL_STATE, action) => {
         isAuthenticated: false,
         loading: false
       }
+
     default:
       return state;
   }

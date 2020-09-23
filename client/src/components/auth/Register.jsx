@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { BsPerson } from 'react-icons/bs'
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { FormControl } from '../../globalStyles'
 import { registerUser } from '../../redux/action/authAction';
 import { showAlert } from '../../redux/action/alertAction';
 import LoginRegister from './LoginRegister'
 import Button from '../layout/Button'
-import { Redirect } from 'react-router-dom';
 
 const Register = ({ registerUser, showAlert, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -33,6 +33,7 @@ const Register = ({ registerUser, showAlert, isAuthenticated }) => {
     registerUser({ name, email, password });
   }
 
+  // REDIRECT IF LOGGED IN
   if (isAuthenticated) {
     return <Redirect to='/' />
   }
@@ -84,7 +85,7 @@ const Register = ({ registerUser, showAlert, isAuthenticated }) => {
             autoComplete='on'
           />
         </FormControl>
-        <Button flex>Register</Button>
+        <Button type='submit' flex>Register</Button>
       </form>
     </LoginRegister>
   )
