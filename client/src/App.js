@@ -5,11 +5,10 @@ import { loadUser } from './redux/action/authAction';
 import { setAuthToken } from './redux/utils/setAuthToken';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
-import Alert from './components/layout/Alert';
 import Navbar from './components/layout/Navbar';
 import './App.css';
 
-const App = ({loadUser}) => {
+const App = ({ loadUser }) => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
@@ -21,13 +20,10 @@ const App = ({loadUser}) => {
   return (
     <BrowserRouter>
       <Navbar />
-      <main className='container'>
-        <Alert />
-        <Switch>
-          <Route exact path='/my-account/login' component={Login} />
-          <Route exact path='/my-account/register' component={Register} />
-        </Switch>
-      </main>
+      <Switch>
+        <Route exact path='/my-account/login' component={Login} />
+        <Route exact path='/my-account/register' component={Register} />
+      </Switch>
     </BrowserRouter>
   );
 }

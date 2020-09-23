@@ -5,8 +5,8 @@ import styled from 'styled-components'
 
 const Alert = ({ alerts }) => {
   return alerts !== null && alerts.length > 0 && alerts.map(alert => (
-    <AlertStyled key={alert.id}>
-      <strong><IoIosWarning className='icon'/>Error: </strong>{alert.msg}
+    <AlertStyled key={alert.id} className='container'>
+      <strong><IoIosWarning className='icon'/></strong>{alert.msg}
     </AlertStyled>
   ))
 }
@@ -18,7 +18,6 @@ const mapStateToProps = state => ({
 const AlertStyled = styled.div`
   padding: 1rem 1.5rem;
   border: 2px solid var(--light-gold);
-  margin: 0 3rem 2rem;
   color: var(--dark-gold);
 
   strong {
