@@ -10,7 +10,11 @@ const productSchema = new mongoose.Schema({
     required: [true, 'A product must have a price']
   },
   category: {
-    type: String
+    type: String,
+    enum: {
+      values: ['women', 'men', 'bags', 'shoes'],
+      message: 'Category must be one of these four: women, men, bags, or shoes'
+    }
   },
   summary: {
     type: String
@@ -18,17 +22,13 @@ const productSchema = new mongoose.Schema({
   description: {
     type: String
   },
-  sizes: {
-    type: String,
-    enum: {
-      values: ['s', 'm', 'lg', 'xl'],
-      message: 'Size must be one of these four: s, m, lg, or xl'
+  stock: [
+    {
+      size: String,
+      qty: Number
     }
-  },
-  stock: {
-    type: Number
-  },
-  avgRatings: {
+  ],
+  ratingsAverage: {
     type: Number,
     default: 4.5,
     min: [1, 'Rating must be greater than 1'],
