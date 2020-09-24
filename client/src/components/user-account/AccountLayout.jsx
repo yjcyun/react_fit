@@ -4,12 +4,6 @@ import { accountNav } from '../../constants/account-nav'
 import styled from 'styled-components'
 
 const AccountLayout = ({ children }) => {
-  // const checkActive = (location) => {
-  //   if (!location) return false;
-  //   const { pathname } = location;
-  //   return pathname === "/my-account";
-  // }
-
   return (
     <>
       <Sidebar>

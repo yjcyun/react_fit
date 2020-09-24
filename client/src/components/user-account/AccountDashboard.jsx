@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { FiEdit, FiUser, FiHeart, FiLogOut } from 'react-icons/fi'
 import styled from 'styled-components'
 import Banner from '../layout/Banner'
 import AccountLayout from './AccountLayout'
+import { accountDashboardList } from '../../constants/account-nav'
 
 const AccountDashboard = () => {
   return (
@@ -18,18 +18,7 @@ const AccountDashboard = () => {
               </p>
             </Greetings>
             <DashboardMain>
-              <Link to='/orders'>
-                <FiEdit className='icon'/>orders
-              </Link>
-              <Link to='/account-details'>
-                <FiUser className='icon'/>account details
-              </Link>
-              <Link to='/wishlist'>
-                <FiHeart className='icon'/>wishlist
-              </Link>
-              <Link to='/logout'>
-                <FiLogOut className='icon'/>logout
-              </Link>
+              {accountDashboardList()}
             </DashboardMain>
           </Main>
         </AccountLayout>
