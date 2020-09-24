@@ -44,7 +44,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
       <NavbarStyled>
         <NavStyled>
           <li><Link to='/'>Home</Link></li>
-          <li><Link to='/'>Shop</Link></li>
+          <li><Link to='/shop'>Shop</Link></li>
         </NavStyled>
         <LogoStyled>
           <Link to='/'>React Fit & Co.</Link>

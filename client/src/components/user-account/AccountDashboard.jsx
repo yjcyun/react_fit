@@ -13,7 +13,9 @@ const AccountDashboard = ({ auth: { user, loading }, logout }) => {
       {loading
         ? <div>Loading...</div>
         : (<>
-          <Banner dark />
+          <Banner dark>
+            <h1>my account</h1>
+          </Banner>
           <AccountLayout className='container'>
             <Main>
               <Greetings>

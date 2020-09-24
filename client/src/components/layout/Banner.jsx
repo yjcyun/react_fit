@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Banner = ({ dark }) => {
+const Banner = ({ dark, children }) => {
   return (
     <BannerStyled dark={dark}>
-      <h1>my account</h1>
+      {children}
     </BannerStyled>
   )
 }
@@ -12,7 +12,7 @@ const Banner = ({ dark }) => {
 const BannerStyled = styled.section`
   background-color: ${props => props.dark ? 'var(--dark-clr)' : '#F9F9F9'};
   padding: 1rem 2rem;
-
+  color: var(--light-clr);
   h1 {
     color: var(--light-clr);
     text-transform: uppercase;

@@ -9,6 +9,7 @@ import Register from './components/auth/Register';
 import Navbar from './components/layout/Navbar';
 import AccountDashboard from './components/user-account/AccountDashboard';
 import './App.css';
+import Shop from './components/shop/Shop';
 
 const App = ({ loadUser }) => {
   if (localStorage.token) {
@@ -25,6 +26,7 @@ const App = ({ loadUser }) => {
       <Switch>
         <Route exact path='/my-account/login' component={Login} />
         <Route exact path='/my-account/register' component={Register} />
+        <Route exact path='/shop' component={Shop} />
         <PrivateRoute exact path='/my-account' component={AccountDashboard} />
       </Switch>
     </BrowserRouter>

@@ -26,7 +26,8 @@ const productSchema = new mongoose.Schema(
     stock: [
       {
         size: String,
-        qty: Number
+        qty: Number,
+        color: String
       }
     ],
     ratingsAverage: {

@@ -8,7 +8,9 @@ import Alert from '../layout/Alert'
 const LoginRegister = ({ children, title, desc }) => {
   return (
     <>
-      <Banner dark />
+      <Banner dark>
+        <h1>my account</h1>
+      </Banner>
       <Alert />
       <LoginRegisterStyled className='container'>
         <ActiveColumn>
