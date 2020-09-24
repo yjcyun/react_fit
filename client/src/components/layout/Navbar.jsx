@@ -107,6 +107,11 @@ const MobileNav = styled.div`
 const NavbarStyled = styled.nav`
   height: 7rem;
   display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--light-clr);
   justify-content: space-between;
   align-items: center;
   padding: 0 5rem;

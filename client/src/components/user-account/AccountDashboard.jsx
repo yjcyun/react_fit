@@ -1,49 +1,51 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import Banner from '../layout/Banner'
 import AccountLayout from './AccountLayout'
 import { accountDashboardList } from '../../constants/account-nav'
+import { connect } from 'react-redux'
+import { logout } from '../../redux/action/authAction'
 
-const AccountDashboard = () => {
+const AccountDashboard = ({ auth: { user, loading }, logout }) => {
   return (
     <>
-      <Banner dark />
-      <DashboardStyled className='container'>
-        <AccountLayout>
-          <Main>
-            <Greetings>
-              <p>
-                Hello <strong>Mars</strong> (not <strong>Mars</strong>? <Link to='/'>Logout</Link>)
-              </p>
-            </Greetings>
-            <DashboardMain>
-              {accountDashboardList()}
-            </DashboardMain>
-          </Main>
-        </AccountLayout>
-      </DashboardStyled>
+      {loading
+        ? <div>Loading...</div>
+        : (<>
+          <Banner dark />
+          <AccountLayout className='container'>
+            <Main>
+              <Greetings>
+                <p>
+                  Hello <strong>{user.name}</strong> (not <strong>{user.name}</strong>? <span onClick={() => logout()}>Logout</span>)
+                    </p>
+              </Greetings>
+              <DashboardMain>
+                {accountDashboardList()}
+              </DashboardMain>
+            </Main>
+          </AccountLayout>
+        </>)
+      }
     </>
   )
 }
 
-const DashboardStyled = styled.section`
-  display: flex;
-  width: 100%;
-
-  @media (min-width: 768px) {
-    margin: 2rem auto 8rem;
-  }
-`
-
 const Greetings = styled.div`
   padding: 1rem;
   background-color: rgba(136,136,136,.06);
+  span {
+    cursor: pointer;
+    text-decoration: underline;
+  }
 `
 
 const Main = styled.div`
-  width: 70%;
   padding: 0 1rem;
+  @media (min-width: 576px) {
+    width: 70%;
+  }
 `
 
 const DashboardMain = styled.div`
@@ -75,4 +77,8 @@ const DashboardMain = styled.div`
   }
 `
 
-export default AccountDashboard
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps, { logout })(AccountDashboard)

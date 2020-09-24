@@ -24,6 +24,13 @@ body {
   font-family: var(--primary-ff);
   background-color: var(--light-clr);
   line-height: 1.5;
+  margin-top: 7rem;
+}
+
+@media (max-width: 996px) {
+  body {
+    margin-top: 5rem;
+  }
 }
 
 a {

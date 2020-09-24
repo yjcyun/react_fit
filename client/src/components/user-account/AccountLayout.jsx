@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 const AccountLayout = ({ children }) => {
   return (
-    <>
+    <LayoutStyled>
       <Sidebar>
         <SidebarContent>
           <h3>my account</h3>
@@ -23,16 +23,29 @@ const AccountLayout = ({ children }) => {
         </SidebarContent>
       </Sidebar>
       {children}
-    </>
+    </LayoutStyled>
   )
 }
 
-const Sidebar = styled.aside`
-  width: 30%;
-  padding: 0 1rem;
+const LayoutStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 2rem auto 8rem;
+  @media (min-width: 576px) {
+    flex-direction: row;
+  }
 `
 
-const SidebarContent = styled.aside`
+const Sidebar = styled.aside`
+  padding: 0 1rem;
+  margin-bottom: 2rem;
+  @media (min-width: 576px) {
+    width: 30%;
+  }
+`
+
+const SidebarContent = styled.div`
   h3{
     padding: 1rem;
     background-color: var(--dark-clr);
