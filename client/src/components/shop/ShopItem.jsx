@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import StarRatings from 'react-star-ratings';
 import { FiShoppingCart, FiHeart, FiZoomIn } from 'react-icons/fi'
+import { Link } from 'react-router-dom';
 
 // GET UNIQUES VALUES OF COLORS
 const onlyUnique = (stock) => {
@@ -32,22 +32,16 @@ const ShopItem = ({ product }) => {
         </div>
       </div>
       <div className='product-detail'>
-        <div className='product-colors'>
-          {onlyUnique(product.stock)}
-        </div>
-        <div className='product-name'>
+        <Link to='/' className='product-name'>
           {product.name}
-        </div>
-        <div className='product-ratings'>
-          <StarRatings
-            rating={product.ratingsAverage}
-            starDimension='14px'
-            starSpacing='0px'
-            starRatedColor='var(--primary-clr)'
-          />
-        </div>
-        <div className='product-price'>
-          ${product.price}
+        </Link>
+        <div className='product-footer'>
+          <div className='product-price'>
+            ${product.price}
+          </div>
+          <div className='product-colors'>
+            {onlyUnique(product.stock)}
+          </div>
         </div>
       </div>
     </ProductItem>
@@ -73,35 +67,24 @@ const ProductItem = styled.div`
   }
   .hover-footer {
     position: absolute;
-    bottom: 7px;
-    width: 100%;
-    padding: 1rem 5rem;
-    color: var(--light-clr);
-    background-color: var(--dark-clr);
+    right: 0;
+    top: 0;
+    padding: 0.5rem;
+    color: var(--dark-clr);
     .footer-icon-wrapper {
       display: flex;
-      justify-content: space-between;
-      text-align: center;
+      flex-direction: column;
+      align-items: flex-end;
+      width: 100%;
       .footer-icon {
         font-size: 1.3rem;
         transition: all 0.3s;
+        margin: 7px 0;
       }
       .footer-icon:hover {
         color: grey;
       }
-    }
-    
-  }
-  .product-detail {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  .product-colors{
-    display: flex;
-    justify-content: center;
-    margin: 7px 0;
+    } 
   }
   .product-name{
     text-transform: capitalize;
@@ -109,9 +92,17 @@ const ProductItem = styled.div`
     color: var(--text-clr);
     font-size: 0.9rem;
     font-weight: 500;
+    padding-bottom:2px;
+    border-bottom: 1px solid rgba(129, 129, 129, 0.25);
   }
-  .product-ratings {
-    margin: 7px 0 5px;
+  .product-footer{
+    display: flex;
+    justify-content: space-between;
+    margin: 0.7rem 0;
+  }
+  .product-colors{
+    display: flex;
+    justify-content: center;
   }
 `
 

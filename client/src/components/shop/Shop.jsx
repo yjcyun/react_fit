@@ -53,13 +53,14 @@ const Shop = ({ getProducts, product: { loading, products } }) => {
 const ProductsList = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 4rem 0.7rem;
+  grid-gap: 4rem 1rem;
   padding: 0 1rem;
   margin: 2rem auto 7rem;
   @media (min-width: 768px) {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     padding: 0 2rem;
     margin: 2rem auto 8rem;
+    grid-gap: 4rem 2rem;
   }
 `
 

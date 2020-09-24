@@ -73,6 +73,7 @@ const MobileNav = styled.div`
   bottom: 0;
   height: 4rem;
   box-shadow: 0 0 9px rgba(0,0,0,.12);
+  z-index:100;
   li {
     flex: 1 0 20%;
   }
@@ -115,6 +116,7 @@ const NavbarStyled = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding: 0 5rem;
+  z-index:100;
   li{
     margin: 0 1rem;
     cursor: pointer;
