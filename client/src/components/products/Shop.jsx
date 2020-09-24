@@ -32,11 +32,9 @@ const Shop = ({ getProducts, product: { loading, products } }) => {
           <div>
             <Banner dark>
               <Category>
-                <Link to='/'>
-                  <span className='hover-slide'>all</span></Link>
+                <Link to='/'><span className='hover-slide'>all</span></Link>
                 {onlyUnique(products)}
               </Category>
-
             </Banner>
             <ProductsList className='container'>
               {products.map(product => (

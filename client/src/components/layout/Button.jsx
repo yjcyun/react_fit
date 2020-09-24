@@ -19,7 +19,6 @@ const ButtonStyled = styled.button`
   cursor: pointer;
   letter-spacing: 1px;
   width: ${props => props.flex ? '100%' : 'auto'};
-  margin-top: 1.5rem;
   transition: all 0.2s;
 
   :hover {

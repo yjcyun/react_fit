@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react'
 import styled from 'styled-components'
 import Banner from '../layout/Banner'
 import AccountLayout from './AccountLayout'

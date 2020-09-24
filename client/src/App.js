@@ -9,7 +9,8 @@ import Register from './components/auth/Register';
 import Navbar from './components/layout/Navbar';
 import AccountDashboard from './components/user-account/AccountDashboard';
 import './App.css';
-import Shop from './components/shop/Shop';
+import Shop from './components/products/Shop';
+import Product from './components/product/Product';
 
 const App = ({ loadUser }) => {
   if (localStorage.token) {
@@ -27,6 +28,7 @@ const App = ({ loadUser }) => {
         <Route exact path='/my-account/login' component={Login} />
         <Route exact path='/my-account/register' component={Register} />
         <Route exact path='/shop' component={Shop} />
+        <Route exact path='/shop/:id' component={Product} />
         <PrivateRoute exact path='/my-account' component={AccountDashboard} />
       </Switch>
     </BrowserRouter>

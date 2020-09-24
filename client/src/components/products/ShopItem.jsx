@@ -2,35 +2,26 @@ import React from 'react'
 import styled from 'styled-components'
 import { FiShoppingCart, FiHeart, FiZoomIn } from 'react-icons/fi'
 import { Link } from 'react-router-dom';
-
-// GET UNIQUES VALUES OF COLORS
-const onlyUnique = (stock) => {
-  const unique = [...new Set(stock.map(item => item.color))];
-  return unique.map(color => (
-    <ProductColor key={color} className='color' background={color}>
-      <div className='label-position'>
-        <span className='label'>{color}</span>
-      </div>
-    </ProductColor>
-  ));
-}
+import { UniqueColor } from '../layout/UniqueColor';
 
 const ShopItem = ({ product }) => {
   return (
     <ProductItem>
-      <div className='product-cover'>
-        <img src={product.imageCover} alt={product.name} className='img-cover' />
-        <div className='img-hover'>
-          <img src={product.images[0]} alt={product.name} />
-          <div className='hover-footer'>
-            <div className='footer-icon-wrapper'>
-              <FiShoppingCart className='footer-icon' />
-              <FiZoomIn className='footer-icon' />
-              <FiHeart className='footer-icon' />
+      <Link to={`/shop/${product.id}`}>
+        <div className='product-cover'>
+          <img src={product.imageCover} alt={product.name} className='img-cover' />
+          <div className='img-hover'>
+            <img src={product.images[0]} alt={product.name} />
+            <div className='hover-footer'>
+              <div className='footer-icon-wrapper'>
+                <FiShoppingCart className='footer-icon' />
+                <FiZoomIn className='footer-icon' />
+                <FiHeart className='footer-icon' />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </Link>
       <div className='product-detail'>
         <Link to='/' className='product-name'>
           {product.name}
@@ -40,7 +31,7 @@ const ShopItem = ({ product }) => {
             ${product.price}
           </div>
           <div className='product-colors'>
-            {onlyUnique(product.stock)}
+            {UniqueColor(product.stock, 'shop')}
           </div>
         </div>
       </div>
@@ -103,49 +94,6 @@ const ProductItem = styled.div`
   .product-colors{
     display: flex;
     justify-content: center;
-  }
-`
-
-const ProductColor = styled.div`
-  width: 15px;
-  height:15px;
-  border-radius: 50%;
-  background-color: ${props => props.background ? props.background : 'var(--dark-clr'};
-  margin: 0 5px;
-  cursor: pointer;
-  position: relative;
-  .label-position{
-    position: absolute;
-    top: -2rem;
-    left: -1.5rem;
-    width: 4rem;
-    text-align: center;
-  }
-  .label {
-    position: relative;
-    background-color: var(--dark-clr);
-    color: var(--light-clr);
-    padding: 5px 10px;
-    cursor: pointer;
-    visibility: hidden;
-    text-transform: capitalize;
-    font-size: 0.8rem;
-  }
-  .label:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border: 5px solid transparent;
-    border-top-color: var(--dark-clr);
-    border-bottom: 0;
-    margin-left: -5px;
-    margin-bottom: -5px;
-  }
-  :hover .label {
-    visibility: visible;
   }
 `
 

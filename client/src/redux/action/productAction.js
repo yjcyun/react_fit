@@ -9,7 +9,7 @@ import {
 // GET ALL PRODUCTS
 export const getProducts = () => async dispatch => {
   try {
-    const res = await axios.get('api/v1/products');
+    const res = await axios.get('/api/v1/products');
     dispatch({ type: GET_PRODUCTS_SUCCESS, payload: res.data });
 
   } catch (err) {
@@ -26,7 +26,7 @@ export const getProducts = () => async dispatch => {
 // GET ONE PRODUCT
 export const getProduct = id => async dispatch => {
   try {
-    const res = await axios.get(`api/v1/products/${id}`);
+    const res = await axios.get(`/api/v1/products/${id}`);
     dispatch({ type: GET_PRODUCT_SUCCESS, payload: res.data })
 
   } catch (err) {

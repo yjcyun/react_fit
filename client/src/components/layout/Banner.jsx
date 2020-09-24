@@ -12,7 +12,7 @@ const Banner = ({ dark, children }) => {
 const BannerStyled = styled.section`
   background-color: ${props => props.dark ? 'var(--dark-clr)' : '#F9F9F9'};
   padding: 1rem 2rem;
-  color: var(--light-clr);
+  color: ${props => props.dark ? '(--light-clr)' : 'var(--dark-clr)'};
   h1 {
     color: var(--light-clr);
     text-transform: uppercase;
