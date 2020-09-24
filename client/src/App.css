@@ -1,15 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Karla&family=Poppins:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Karla&family=Poppins:wght@600&family=Lora:wght@500&display=swap');
 
 :root {
   --primary-clr: #45a0a1;
   --dark-clr: #0a0a0a;
   --text-clr: #4c4c4c;
-  --light-gold:#E0B252;
+  --faint-grey: rgba(136,136,136,.12);
+  --fainter-grey: rgba(136,136,136,.04);
+  --light-gold: #e0b252;
   --dark-gold: #af7d27;
   --red-clr: tomato;
   --light-clr: #ffffff;
   --primary-ff: 'Karla', sans-serif;
   --title-ff: 'Poppins', sans-serif;
+  --product-ff: 'Lora', serif;
   --input-border: 1px solid rgba(129, 129, 129, 0.25);
   --input-focus-border: 1px solid rgba(129, 129, 129, 0.8);
 }
@@ -38,7 +41,8 @@ a {
   text-decoration: none;
 }
 
-ul, li {
+ul,
+li {
   list-style: none;
 }
 

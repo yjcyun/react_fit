@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { useEffect } from 'react'
 import { getProducts } from '../../redux/action/productAction'
 import styled from 'styled-components'
+import ShopItem from './ShopItem'
 
 const Shop = ({ getProducts, product: { loading, products } }) => {
   useEffect(() => {
@@ -21,10 +22,7 @@ const Shop = ({ getProducts, product: { loading, products } }) => {
             </Banner>
             <ProductsList className='container'>
               {products.map(product => (
-                <ProductItem key={product.id}>
-                <img src={product.imageCover} alt={product.name}/>
-                
-                </ProductItem>
+                <ShopItem key={product.id} product={product} />
               ))}
             </ProductsList>
           </div>
@@ -37,7 +35,7 @@ const Shop = ({ getProducts, product: { loading, products } }) => {
 const ProductsList = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 0.7rem;
+  grid-gap: 4rem 0.7rem;
   padding: 0 1rem;
   margin: 2rem auto 7rem;
   @media (min-width: 768px) {
@@ -47,9 +45,6 @@ const ProductsList = styled.section`
   }
 `
 
-const ProductItem = styled.div`
-
-`
 
 const mapStateToProps = state => ({
   product: state.product

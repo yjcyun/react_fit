@@ -56,7 +56,7 @@ const DashboardMain = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-gap: 1rem;
   a{
-    border: 1px solid rgba(136,136,136,.12);
+    border: 1px solid var(--faint-grey);
     padding: 2rem 0;
     display: flex;
     flex-direction: column;
@@ -75,7 +75,7 @@ const DashboardMain = styled.div`
     color: var(--primary-clr);
   }
   a:hover {
-    background-color: rgba(136,136,136,.04)
+    background-color: var(--fainter-grey);
   }
 `
 
