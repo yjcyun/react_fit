@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { FiShoppingCart, FiGrid, FiHeart, FiUser } from 'react-icons/fi'
 import styled from 'styled-components'
 import { logout } from '../../redux/action/authAction'
+import Cart from '../side-cart/Cart'
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
+  const [openCart, setOpenCart] = useState(false);
+
   const authLinks = (
     <>
       <li className='login-register'><Link to='/my-account'>My Account</Link>/</li>
@@ -18,7 +21,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     <>
       <li className='login-register'><Link to='/my-account/login'>Login</Link>/</li>
       <li className='login-register'><Link to='/my-account/register'>Register</Link></li>
-      <li><FiShoppingCart />0</li>
+      <li onClick={() => setOpenCart(!openCart)}><FiShoppingCart />0</li>
     </>
   );
 
@@ -56,6 +59,8 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
       <MobileNav>
         {mobileNav}
       </MobileNav>
+      {openCart && <Cart setOpenCart={setOpenCart} />}
+
     </>
   )
 }
