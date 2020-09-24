@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import Banner from '../layout/Banner'
 import ProductImages from './ProductImages';
 import ProductContent from './ProductContent';
+import Description from './Description'
 
 const Product = ({ match, getProduct, auth: { loading }, product }) => {
   useEffect(() => {
@@ -21,19 +22,26 @@ const Product = ({ match, getProduct, auth: { loading }, product }) => {
             <li>breadcrumbs</li>
           </ul>
         </Banner>
-        <Main className='container'>
-          <ProductInfo>
+        <Main>
+          <ProductInfo className='container'>
             <ProductImages product={product} />
             <ProductContent product={product} />
           </ProductInfo>
-          <ProductDesc></ProductDesc>
+          <Description product={product}/>
+        
+
           <BestSeller></BestSeller>
         </Main>
       </>)
   )
 }
 
-const Main = styled.div`
+const Main = styled.div``
+
+const ProductInfo = styled.section`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 2rem;
   margin: 2rem auto 7rem;
   padding: 0 1rem;
   @media (min-width: 768px) {
@@ -41,16 +49,16 @@ const Main = styled.div`
     margin: 2rem auto 8rem;
   }
 `
-const ProductInfo = styled.section`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-gap: 2rem;
+
+const BestSeller = styled.section`
+  margin: 2rem auto 7rem;
+  padding: 0 1rem;
+  @media (min-width: 768px) {
+    padding: 0 2rem;
+    margin: 2rem auto 8rem;
+  }
 `
 
-const ProductDesc = styled.section`
-`
-const BestSeller = styled.section`
-`
 
 const mapStateToProps = state => ({
   auth: state.auth,
