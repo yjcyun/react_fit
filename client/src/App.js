@@ -6,6 +6,7 @@ import { setAuthToken } from './redux/utils/setAuthToken';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Navbar from './components/layout/Navbar';
+import AccountDashboard from './components/user-account/AccountDashboard';
 import './App.css';
 
 const App = ({ loadUser }) => {
@@ -23,6 +24,7 @@ const App = ({ loadUser }) => {
       <Switch>
         <Route exact path='/my-account/login' component={Login} />
         <Route exact path='/my-account/register' component={Register} />
+        <Route exact path='/my-account' component={AccountDashboard} />
       </Switch>
     </BrowserRouter>
   );
