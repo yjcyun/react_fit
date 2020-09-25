@@ -4,15 +4,17 @@ import { connect } from 'react-redux'
 import { FiShoppingCart, FiGrid, FiHeart, FiUser } from 'react-icons/fi'
 import { logout } from '../../redux/action/authAction'
 import { toggleSideCart } from '../../redux/action/cartAction'
-import Cart from '../side-cart/Cart'
+import SideCart from '../cart/SideCart'
 import styled from 'styled-components'
 
-const Navbar = ({ auth: { isAuthenticated, loading }, hidden: { hidden }, logout, toggleSideCart }) => {
+const Navbar = ({ auth: { isAuthenticated, loading }, cart: { hidden, cartItems }, logout, toggleSideCart }) => {
   const authLinks = (
     <>
       <li className='login-register'><Link to='/my-account'>My Account</Link>/</li>
       <li className='login-register' onClick={() => logout()}>Logout</li>
-      <li><FiShoppingCart />0</li>
+      <li onClick={toggleSideCart} className='cart-div'>
+        <FiShoppingCart className='icon'/><span className='qty'>{cartItems.length}</span>
+      </li>
     </>
   );
 
@@ -20,7 +22,9 @@ const Navbar = ({ auth: { isAuthenticated, loading }, hidden: { hidden }, logout
     <>
       <li className='login-register'><Link to='/my-account/login'>Login</Link>/</li>
       <li className='login-register'><Link to='/my-account/register'>Register</Link></li>
-      <li onClick={toggleSideCart}><FiShoppingCart />0</li>
+      <li onClick={toggleSideCart} className='cart-div'>
+        <FiShoppingCart className='icon'/><span className='qty'>{cartItems.length}</span>
+      </li>
     </>
   );
 
@@ -58,7 +62,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, hidden: { hidden }, logout
       <MobileNav>
         {mobileNav}
       </MobileNav>
-      {hidden ? null : <Cart close={toggleSideCart} />}
+      {hidden ? null : <SideCart close={toggleSideCart} />}
     </>
   )
 }
@@ -157,9 +161,28 @@ const LogoStyled = styled.div`
 `
 
 const LogInAndCart = styled.ul`
-    display: flex;
+  display: flex;
   .login-register {
     margin: 0;
+  }
+  .cart-div{
+    position: relative;
+    .qty{
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      border-radius: 50%;
+      background-color: var(--primary-clr);
+      color: var(--light-clr);
+      width: 20px;
+      height: 20px;
+      text-align: center;
+    }
+    .icon{
+      font-size: 1.3rem;
+      vertical-align: middle;
+      margin-bottom: 5px;
+    }
   }
  @media (max-width: 768px) {
     .login-register {
@@ -170,7 +193,7 @@ const LogInAndCart = styled.ul`
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  hidden: state.cart
+  cart: state.cart
 });
 
 export default connect(mapStateToProps, { logout, toggleSideCart })(Navbar)

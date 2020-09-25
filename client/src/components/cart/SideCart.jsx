@@ -4,8 +4,9 @@ import { connect } from 'react-redux'
 import styled from 'styled-components'
 import { clearItem } from '../../redux/action/cartAction'
 import emptyCart from '../../assets/shopping-cart.png'
+import { Link } from 'react-router-dom'
 
-const Cart = ({ cart, close, clearItem }) => {
+const SideCart = ({ cart, close, clearItem }) => {
   return (
     <CartOverlay onClick={close}>
       <CartStyled onClick={e => e.stopPropagation()}>
@@ -41,7 +42,7 @@ const Cart = ({ cart, close, clearItem }) => {
               <p className='price'>$12.00</p>
             </div>
             <div className='buttons'>
-              <button>view cart</button>
+              <Link to='/cart'><button>view cart</button></Link>
               <button className='checkout-btn'>checkout</button>
             </div>
           </Footer>
@@ -193,4 +194,4 @@ const mapStateToProps = state => ({
   cart: state.cart
 });
 
-export default connect(mapStateToProps, { clearItem })(Cart)
+export default connect(mapStateToProps, { clearItem })(SideCart)

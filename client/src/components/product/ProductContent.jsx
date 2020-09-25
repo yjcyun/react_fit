@@ -27,6 +27,8 @@ const ProductContent = ({ product, addItem }) => {
     <ContentStyled>
       {/* PRODUCT NAME */}
       <h1>{product.name}</h1>
+      {/* PRODUCT PRICE */}
+      <p className='price'>${product.price.toFixed(2)}</p>
       {/* RATING STARS */}
       <div className='ratings'>
         <span className='stars'>
@@ -39,8 +41,7 @@ const ProductContent = ({ product, addItem }) => {
         </span>
         <span>({product.ratingsQuantity} customer reviews)</span>
       </div>
-      {/* PRODUCT PRICE */}
-      <p className='price'>${product.price.toFixed(2)}</p>
+
 
       {/* AVAILABLE COLORS */}
       <div className='colors'>
@@ -131,9 +132,10 @@ const ContentStyled = styled.div`
     font-size: 2rem;
     text-transform: capitalize;
     font-weight: 400;
+    line-height: 1;
   };
   .ratings{
-    margin: 1rem 0;
+    margin: 0.7rem 0;
     .stars {
       margin-right: 1rem;
     }
@@ -144,6 +146,7 @@ const ContentStyled = styled.div`
   .price {
     color: var(--primary-clr);
     font-size: 2rem;
+    line-height: 1;
   }
   .summary {
     margin: 1rem 0;
