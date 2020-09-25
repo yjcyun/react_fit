@@ -36,9 +36,9 @@ const FooterStyled = styled.footer`
       font-size: 1.4rem;
     }
   }
-  @media(max-width: 996px) {
+  /* @media(max-width: 996px) {
     margin-bottom: 4rem;
-  }
+  } */
 `
 
 export default Footer

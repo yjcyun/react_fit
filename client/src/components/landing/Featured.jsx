@@ -9,7 +9,7 @@ import styled from 'styled-components'
 
 const Featured = ({ products: { products, loading }, getProducts }) => {
   useEffect(() => {
-    getProducts();
+    getProducts(null);
   }, [getProducts]);
 
   const renderFeatured = () => {

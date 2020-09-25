@@ -1,6 +1,6 @@
 import React from 'react'
 import Banner from '../layout/Banner'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { useEffect } from 'react'
 import { getProducts } from '../../redux/action/productAction'
@@ -8,21 +8,29 @@ import ShopItem from './ShopItem'
 import styled from 'styled-components'
 
 // GET UNIQUES VALUES OF CATEGORY
-const onlyUnique = (products) => {
-  const unique = [...new Set(products.map(item => item.category))];
-  return unique.map(cat => (
-    <Link key={cat} to='/'>
-      <span className='hover-slide'>
-        {cat}
-      </span>
-    </Link>
-  ))
+// const onlyUnique = (products) => {
+//   const unique = [...new Set(products.map(item => item.category))];
+//   console.log(unique)
+
+//   return unique.map(category => (
+//     <Link key={category} to={`/shop?category=${category}`}>
+//       <span className='hover-slide'>
+//         {category}
+//       </span>
+//     </Link>
+//   ))
+// }
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
 }
 
 const Shop = ({ getProducts, product: { loading, products } }) => {
+  let query = useQuery();
+  let category = query.get('category');
+
   useEffect(() => {
-    getProducts();
-  }, [getProducts]);
+    getProducts(category);
+  }, [getProducts, category]);
 
   return (
     <>
@@ -32,8 +40,11 @@ const Shop = ({ getProducts, product: { loading, products } }) => {
           <div>
             <Banner dark>
               <Category>
-                <Link to='/'><span className='hover-slide'>all</span></Link>
-                {onlyUnique(products)}
+                <Link to='/shop'><span className='hover-slide'>all</span></Link>
+                <Link to='/shop?category=women'><span className='hover-slide'>women</span></Link>
+                <Link to='/shop?category=men'><span className='hover-slide'>men</span></Link>
+                <Link to='/shop?category=bags'><span className='hover-slide'>bags</span></Link>
+                <Link to='/shop?category=shoes'><span className='hover-slide'>shoes</span></Link>
               </Category>
             </Banner>
             <ProductsList className='container'>

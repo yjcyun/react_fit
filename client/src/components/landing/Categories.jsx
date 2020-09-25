@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Categories = () => {
@@ -9,22 +10,22 @@ const Categories = () => {
         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
       </div>
       <div className='categories container'>
-        <div className='img-container'>
+        <Link to='/shop?category=women' className='img-container'>
           <img src='https://res.cloudinary.com/yjcyun/image/upload/v1600914368/ReactFitDB/women-2-cover_pircqe.jpg' alt='women category' />
           <span>Women</span>
-        </div>
-        <div className='img-container'>
+        </Link>
+        <Link to='/shop?category=men' className='img-container'>
           <img src='https://res.cloudinary.com/yjcyun/image/upload/v1600914367/ReactFitDB/men-2-cover_ldieq1.jpg' alt='men category' />
           <span>Men</span>
-        </div>
-        <div className='img-container'>
+        </Link>
+        <Link to='/shop?category=bags' className='img-container'>
           <img src='https://res.cloudinary.com/yjcyun/image/upload/v1600914369/ReactFitDB/bag-3-cover_kslxra.jpg' alt='bag category' />
           <span>Bags</span>
-        </div>
-        <div className='img-container'>
+        </Link>
+        <Link to='/shop?category=shoes' className='img-container'>
           <img src='https://res.cloudinary.com/yjcyun/image/upload/v1600914369/ReactFitDB/shoes-2-cover_s6ae0g.jpg' alt='shoes category' />
           <span>Shoes</span>
-        </div>
+        </Link>
       </div>
     </CategoriesStyled>
 

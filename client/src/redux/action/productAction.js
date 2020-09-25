@@ -7,9 +7,10 @@ import {
 } from '../type';
 
 // GET ALL PRODUCTS
-export const getProducts = () => async dispatch => {
+export const getProducts = (category) => async dispatch => {
   try {
-    const res = await axios.get('/api/v1/products');
+    const query = category !== null ? `?category=${category}` : ''
+    const res = await axios.get(`/api/v1/products${query}`);
     dispatch({ type: GET_PRODUCTS_SUCCESS, payload: res.data });
 
   } catch (err) {

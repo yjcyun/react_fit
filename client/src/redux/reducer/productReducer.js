@@ -14,7 +14,6 @@ const INITIAL_STATE = {
 
 export const productReducer = (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
-
   switch (type) {
     case GET_PRODUCTS_SUCCESS:
       return {
