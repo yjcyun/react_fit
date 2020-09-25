@@ -1,14 +1,27 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { FiMinus, FiPlus, FiHeart } from 'react-icons/fi'
-import { UniqueColor } from '../layout/UniqueColor'
+import { UniqueColor } from './UniqueColor'
+import { addItem } from '../../redux/action/cartAction'
+import { UniqueSize } from './UniqueSize'
 import StarRatings from 'react-star-ratings'
 import Button from '../layout/Button'
 import styled from 'styled-components'
-import { addItem } from '../../redux/action/cartAction'
 
 const ProductContent = ({ product, addItem }) => {
   const [qty, setQty] = useState(1);
+  const [color, setColor] = useState(null);
+  const [size, setSize] = useState(null);
+  const [activeIndexColor, setActiveIndexColor] = useState(null);
+  const [activeIndexSize, setActiveIndexSize] = useState(null);
+  const [inStock, setInStock] = useState(0);
+  const [warning, setWarning] = useState('')
+
+  //TODO: results in an infinite loop. 
+  // product.stock.map(item => {
+  //  return item.qty === 0 ? setInStock(0) : setInStock(item.qty)
+  // })
+
 
   return (
     <ContentStyled>
@@ -28,42 +41,70 @@ const ProductContent = ({ product, addItem }) => {
       </div>
       {/* PRODUCT PRICE */}
       <p className='price'>${product.price.toFixed(2)}</p>
-      {/* SUMMARY */}
-      <div className='summary'>
-        <p>{product.summary}</p>
-      </div>
+
       {/* AVAILABLE COLORS */}
-      <div className='color-div'>
-        <strong>Color:</strong>
+      <div className='colors'>
+        <span>Color : {color}</span>
         <span className='color-div'>
-          {UniqueColor(product.stock)}
+          <UniqueColor
+            stock={product.stock}
+            setColor={setColor}
+            setActiveIndex={setActiveIndexColor}
+            activeIndex={activeIndexColor}
+          />
+        </span>
+      </div>
+      {/* AVAILABLE SIZES */}
+      <div className='colors'>
+        <span>SIZE : {size}</span>
+        <span className='color-div'>
+          <UniqueSize
+            stock={product.stock}
+            setSize={setSize}
+            setActiveIndex={setActiveIndexSize}
+            activeIndex={activeIndexSize}
+            inStock={inStock}
+          />
         </span>
       </div>
       {/* QUANTITY SELECTOR */}
-      <div className='quantity'>
-        <div className='quantity-selector'>
-          <button
-            className='minus'
-            onClick={() => qty === 1 ? 'null' : setQty(qty - 1)}
-          >
-            <FiMinus className='icon' />
-          </button>
-          <input
-            type='text'
-            className='amount'
-            value={qty}
-            onChange={() => setQty(qty)}
-          />
-          <button
-            className='plus'
-            onClick={() => setQty(qty + 1)}
-          >
-            <FiPlus className='icon' />
-          </button>
-        </div>
+      <div className='quantity-btn'>
+        {(!color || !size) && <span className='warning'>{warning}</span>}
 
-        <div className='add-to-cart' onClick={() => addItem(product, qty)}>
-          <Button dark type='button'>Add to cart</Button>
+        <div className='quantity'>
+          <div className='quantity-selector'>
+            <button
+              className='minus'
+              onClick={() => qty === 1 ? 'null' : setQty(qty - 1)}
+            >
+              <FiMinus className='icon' />
+            </button>
+            <input
+              type='text'
+              className='amount'
+              value={qty}
+              onChange={() => setQty(qty)}
+            />
+            <button
+              className='plus'
+              onClick={() => setQty(qty + 1)}
+            >
+              <FiPlus className='icon' />
+            </button>
+          </div>
+
+          {color && size
+            ? <div className='add-to-cart' onClick={() => {
+              addItem(product, qty, color, size);
+              setWarning('');
+            }}>
+              <Button dark type='button'>Add to cart</Button>
+            </div>
+            : <div className='add-to-cart' onClick={() => setWarning('Please select options before adding to bag')}>
+              <Button dark type='button'>Add to cart</Button>
+            </div>
+          }
+
         </div>
       </div>
       {/* OPTIONS */}
@@ -87,7 +128,7 @@ const ProductContent = ({ product, addItem }) => {
 const ContentStyled = styled.div`
   h1{
     font-family: var(--product-ff);
-    font-size: 2.5rem;
+    font-size: 2rem;
     text-transform: capitalize;
     font-weight: 400;
   };
@@ -107,18 +148,21 @@ const ContentStyled = styled.div`
   .summary {
     margin: 1rem 0;
   }
+  .colors {
+    text-transform: uppercase;
+    margin: 10px 0;
+  }
   .color-div{
     display: flex;
-    align-items: center;
-    margin: 1rem 0;
-    strong{
-      margin-right: 1rem;
-      letter-spacing: 1px;
-    }
+  }
+  .quantity-btn{
+    margin: 2rem 0;
+  }
+  .warning {
+    color: var(--red-clr);
   }
   .quantity {
     display: flex;
-    margin: 2rem 0;
   }
   .quantity-selector{
     display: flex;

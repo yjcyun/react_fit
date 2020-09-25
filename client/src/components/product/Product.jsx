@@ -41,9 +41,7 @@ const ProductInfo = styled.section`
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-gap: 2rem;
   margin: 2rem auto 7rem;
-  padding: 0 1rem;
   @media (min-width: 768px) {
-    padding: 0 2rem;
     margin: 2rem auto 8rem;
   }
 `

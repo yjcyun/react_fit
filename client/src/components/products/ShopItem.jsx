@@ -2,8 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { FiShoppingCart, FiHeart, FiZoomIn } from 'react-icons/fi'
 import { Link } from 'react-router-dom';
-import { UniqueColor } from '../layout/UniqueColor';
-
 const ShopItem = ({ product }) => {
   return (
     <ProductItem>
@@ -26,13 +24,8 @@ const ShopItem = ({ product }) => {
         <Link to='/' className='product-name'>
           {product.name}
         </Link>
-        <div className='product-footer'>
-          <div className='product-price'>
-            ${product.price}
-          </div>
-          <div className='product-colors'>
-            {UniqueColor(product.stock, 'shop')}
-          </div>
+        <div className='product-price'>
+          ${product.price}
         </div>
       </div>
     </ProductItem>
@@ -86,14 +79,9 @@ const ProductItem = styled.div`
     padding-bottom:2px;
     border-bottom: 1px solid rgba(129, 129, 129, 0.25);
   }
-  .product-footer{
+  .product-detail{
     display: flex;
     justify-content: space-between;
-    margin: 0.7rem 0;
-  }
-  .product-colors{
-    display: flex;
-    justify-content: center;
   }
 `
 

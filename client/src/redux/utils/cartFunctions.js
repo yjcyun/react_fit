@@ -2,6 +2,8 @@ export const addItemToCart = (cartItems, itemToAdd) => {
 
   const itemAdded = itemToAdd[0];
   const qty = itemToAdd[1];
+  const color = itemToAdd[2];
+  const size = itemToAdd[3];
 
   // CHECK IF ITEM BEING ADDED ALREADY EXISTS IN CART
   const existingCartItem = cartItems.find(item => item.id === itemAdded.id);
@@ -9,12 +11,17 @@ export const addItemToCart = (cartItems, itemToAdd) => {
   if (existingCartItem) {
     return cartItems.map(cartItem => (
       cartItem.id === itemAdded.id
-        ? { ...cartItem, quantity: cartItem.quantity + qty }
+        ? {
+          ...cartItem,
+          quantity: cartItem.quantity + qty,
+          color,
+          size
+        }
         : cartItem
     ));
   }
   // IF NEWLY ADDED ITEM, SET QTY TO 1
-  return [...cartItems, { ...itemAdded, quantity: qty }];
+  return [...cartItems, { ...itemAdded, quantity: qty, color, size }];
 }
 
 export const removeItemFromCart = (cartItems, itemToRemove) => {

@@ -22,7 +22,7 @@ const Cart = ({ cart, close, clearItem }) => {
                     <img src={item.imageCover} alt={item.name} />
                   </div>
                   <div className='content'>
-                    <p className='name'>{item.name} - black</p>
+                    <p className='name'>{item.name} - {item.color} - {item.size}</p>
                     <p className='qty'>{item.quantity} x <span className='price'>${item.price}</span></p>
                     <span className='close-btn' onClick={() => clearItem(item)}><IoIosClose className='icon' /></span>
                   </div>
