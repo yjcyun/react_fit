@@ -28,8 +28,6 @@ const Product = ({ match, getProduct, auth: { loading }, product }) => {
             <ProductContent product={product} />
           </ProductInfo>
           <Description product={product}/>
-        
-
           <BestSeller></BestSeller>
         </Main>
       </>)

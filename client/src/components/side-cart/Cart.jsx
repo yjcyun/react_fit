@@ -1,49 +1,51 @@
 import React from 'react'
 import { IoIosClose } from 'react-icons/io'
+import { connect } from 'react-redux'
 import styled from 'styled-components'
+import { clearItem } from '../../redux/action/cartAction'
+import emptyCart from '../../assets/shopping-cart.png'
 
-const Cart = ({ setOpenCart }) => {
+const Cart = ({ cart, close, clearItem }) => {
   return (
-    <CartOverlay onClick={() => setOpenCart(false)}>
-      <CartStyled>
+    <CartOverlay onClick={close}>
+      <CartStyled onClick={e => e.stopPropagation()}>
         <Header>
           <h2>shopping cart</h2>
-          <span onClick={() => setOpenCart(false)}>close<IoIosClose className='icon' /></span>
+          <span onClick={close}>close<IoIosClose className='icon' /></span>
         </Header>
         <Main>
           <ul>
-            <li>
-              <div className='img-container'>
-                <img src='https://res.cloudinary.com/yjcyun/image/upload/v1600914370/ReactFitDB/men-1-3_tmbxes.jpg' alt='' />
-              </div>
-              <div className='content'>
-                <p>backpack double - black</p>
-                <p className='qty'>1 x <span className='price'>$12.00</span></p>
-                <span className='close-btn'><IoIosClose className='icon' /></span>
-              </div>
-            </li>
-            <li>
-              <div className='img-container'>
-                <img src='https://res.cloudinary.com/yjcyun/image/upload/v1600914370/ReactFitDB/men-1-3_tmbxes.jpg' alt='' />
-              </div>
-              <div className='content'>
-                <p>backpack double - black</p>
-                <p className='qty'>1 x <span className='price'>$12.00</span></p>
-                <span className='close-btn'><IoIosClose className='icon' /></span>
-              </div>
-            </li>
+            {cart.cartItems.length > 0
+              ? cart.cartItems.map(item => (
+                <li key={item.id}>
+                  <div className='img-container'>
+                    <img src={item.imageCover} alt={item.name} />
+                  </div>
+                  <div className='content'>
+                    <p className='name'>{item.name} - black</p>
+                    <p className='qty'>{item.quantity} x <span className='price'>${item.price}</span></p>
+                    <span className='close-btn' onClick={() => clearItem(item)}><IoIosClose className='icon' /></span>
+                  </div>
+                </li>
+              ))
+              : <div className='empty'>
+                <img src={emptyCart} alt='empty cart'/> No products in the cart.
+                </div>
+            }
           </ul>
         </Main>
-        <Footer>
-          <div className='subtotal'>
-            <p>subtotal:</p>
-            <p className='price'>$12.00</p>
-          </div>
-          <div className='buttons'>
-            <button>view cart</button>
-            <button className='checkout-btn'>checkout</button>
-          </div>
-        </Footer>
+        {cart.cartItems.length > 0 &&
+          <Footer>
+            <div className='subtotal'>
+              <p>subtotal:</p>
+              <p className='price'>$12.00</p>
+            </div>
+            <div className='buttons'>
+              <button>view cart</button>
+              <button className='checkout-btn'>checkout</button>
+            </div>
+          </Footer>
+        }
       </CartStyled>
     </CartOverlay>
   )
@@ -101,13 +103,14 @@ const Main = styled.div`
   }
   li{
     display: flex;
-    border-top: 1px solid rgba(136,136,136,.12);
+    /* border-top: 1px solid rgba(136,136,136,.12); */
     padding-top: 10px;
     .img-container{
       width: 20%;
       margin-right: 1rem;
     }
     .content {
+      max-width: 20rem;
       width: 75%;
       font-size: 0.9rem;
       text-transform: uppercase;
@@ -119,12 +122,25 @@ const Main = styled.div`
         font-size: 1.5rem;
         color: var(--text-clr);
       }
+      .name {
+        width: 85%;
+      }
       .qty{
         margin: 0.5rem 0;
       }
       .price{
         color: var(--primary-clr);
       }
+    }
+  }
+  .empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    img{
+      width: 3rem;
+      margin-right: 1rem;
     }
   }
 `
@@ -173,4 +189,8 @@ const Footer = styled.div`
   }
 `
 
-export default Cart
+const mapStateToProps = state => ({
+  cart: state.cart
+});
+
+export default connect(mapStateToProps, { clearItem })(Cart)

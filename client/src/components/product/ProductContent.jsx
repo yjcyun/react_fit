@@ -1,11 +1,15 @@
-import React from 'react'
-import StarRatings from 'react-star-ratings'
+import React, { useState } from 'react'
+import { connect } from 'react-redux'
 import { FiMinus, FiPlus, FiHeart } from 'react-icons/fi'
 import { UniqueColor } from '../layout/UniqueColor'
+import StarRatings from 'react-star-ratings'
 import Button from '../layout/Button'
 import styled from 'styled-components'
+import { addItem } from '../../redux/action/cartAction'
 
-const ProductContent = ({product}) => {
+const ProductContent = ({ product, addItem }) => {
+  const [qty, setQty] = useState(1);
+
   return (
     <ContentStyled>
       {/* PRODUCT NAME */}
@@ -38,11 +42,27 @@ const ProductContent = ({product}) => {
       {/* QUANTITY SELECTOR */}
       <div className='quantity'>
         <div className='quantity-selector'>
-          <button className='minus'><FiMinus className='icon' /></button>
-          <input type='text' className='amount' />
-          <button className='plus'><FiPlus className='icon' /></button>
+          <button
+            className='minus'
+            onClick={() => qty === 1 ? 'null' : setQty(qty - 1)}
+          >
+            <FiMinus className='icon' />
+          </button>
+          <input
+            type='text'
+            className='amount'
+            value={qty}
+            onChange={() => setQty(qty)}
+          />
+          <button
+            className='plus'
+            onClick={() => setQty(qty + 1)}
+          >
+            <FiPlus className='icon' />
+          </button>
         </div>
-        <div className='add-to-cart'>
+
+        <div className='add-to-cart' onClick={() => addItem(product, qty)}>
           <Button dark type='button'>Add to cart</Button>
         </div>
       </div>
@@ -143,4 +163,6 @@ const ContentStyled = styled.div`
   }
 `
 
-export default ProductContent
+
+
+export default connect(null, { addItem })(ProductContent)

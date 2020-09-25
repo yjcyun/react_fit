@@ -1,14 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { FiShoppingCart, FiGrid, FiHeart, FiUser } from 'react-icons/fi'
-import styled from 'styled-components'
 import { logout } from '../../redux/action/authAction'
+import { toggleSideCart } from '../../redux/action/cartAction'
 import Cart from '../side-cart/Cart'
+import styled from 'styled-components'
 
-const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
-  const [openCart, setOpenCart] = useState(false);
-
+const Navbar = ({ auth: { isAuthenticated, loading }, hidden: { hidden }, logout, toggleSideCart }) => {
   const authLinks = (
     <>
       <li className='login-register'><Link to='/my-account'>My Account</Link>/</li>
@@ -21,7 +20,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     <>
       <li className='login-register'><Link to='/my-account/login'>Login</Link>/</li>
       <li className='login-register'><Link to='/my-account/register'>Register</Link></li>
-      <li onClick={() => setOpenCart(!openCart)}><FiShoppingCart />0</li>
+      <li onClick={toggleSideCart}><FiShoppingCart />0</li>
     </>
   );
 
@@ -59,8 +58,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
       <MobileNav>
         {mobileNav}
       </MobileNav>
-      {openCart && <Cart setOpenCart={setOpenCart} />}
-
+      {hidden ? null : <Cart close={toggleSideCart} />}
     </>
   )
 }
@@ -171,7 +169,8 @@ const LogInAndCart = styled.ul`
 `
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  hidden: state.cart
 });
 
-export default connect(mapStateToProps, { logout })(Navbar)
+export default connect(mapStateToProps, { logout, toggleSideCart })(Navbar)

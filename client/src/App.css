@@ -63,6 +63,10 @@ p {
   color: var(--text-clr);
 }
 
+input, button {
+  font-family: var(--primary-ff);
+}
+
 input:focus,
 button:focus,
 button:active {
