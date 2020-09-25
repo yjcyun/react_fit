@@ -7,7 +7,8 @@ import CartHeader from './CartHeader'
 import CartItem from './CartItem'
 import PaymentOptions from './PaymentOptions'
 
-const Cart = () => {
+const Cart = ({cart:{cartItems}}) => {
+  console.log(cartItems)
   return (
     <>
       <Banner dark>
@@ -16,6 +17,7 @@ const Cart = () => {
       <CartStyled className='container'>
         <ShoppingBag>
           <CartHeader />
+          
           <CartItem />
         </ShoppingBag>
         <PaymentOptions />
