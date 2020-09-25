@@ -81,7 +81,6 @@ const NavbarStyled = styled.nav`
 const NavStyled = styled.ul`
   display: flex;
   text-transform: uppercase;
-
   @media (max-width: 996px) {
     display: none;
   }
