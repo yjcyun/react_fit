@@ -6,8 +6,10 @@
     "category": "women",
     "ratingsAverage": 0,
     "ratingsQuantity": 0,
+    "featured": true,
     "imageCover": "https://res.cloudinary.com/yjcyun/image/upload/v1600914368/ReactFitDB/women-1-cover_e3t911.jpg",
     "images": [
+      "https://res.cloudinary.com/yjcyun/image/upload/v1600914368/ReactFitDB/women-1-cover_e3t911.jpg",
       "https://res.cloudinary.com/yjcyun/image/upload/v1600914368/ReactFitDB/women-1-3_ej64rg.jpg",
       "https://res.cloudinary.com/yjcyun/image/upload/v1600914368/ReactFitDB/women-1-2_w0gah0.jpg",
       "https://res.cloudinary.com/yjcyun/image/upload/v1600914368/ReactFitDB/women-1-1_k7cyza.jpg"
@@ -33,8 +35,10 @@
     "category": "women",
     "ratingsAverage": 0,
     "ratingsQuantity": 0,
+    "featured": false,
     "imageCover": "https://res.cloudinary.com/yjcyun/image/upload/v1600914368/ReactFitDB/women-2-cover_pircqe.jpg",
     "images": [
+      "https://res.cloudinary.com/yjcyun/image/upload/v1600914368/ReactFitDB/women-2-cover_pircqe.jpg",
       "https://res.cloudinary.com/yjcyun/image/upload/v1600914368/ReactFitDB/women-1-3_ej64rg.jpg",
       "https://res.cloudinary.com/yjcyun/image/upload/v1600914368/ReactFitDB/women-1-2_w0gah0.jpg",
       "https://res.cloudinary.com/yjcyun/image/upload/v1600914368/ReactFitDB/women-1-1_k7cyza.jpg"
@@ -60,8 +64,10 @@
     "category": "women",
     "ratingsAverage": 0,
     "ratingsQuantity": 0,
+    "featured": true,
     "imageCover": "https://res.cloudinary.com/yjcyun/image/upload/v1600914368/ReactFitDB/women-3-cover_oudklj.jpg",
     "images": [
+      "https://res.cloudinary.com/yjcyun/image/upload/v1600914368/ReactFitDB/women-3-cover_oudklj.jpg",
       "https://res.cloudinary.com/yjcyun/image/upload/v1600914368/ReactFitDB/women-1-3_ej64rg.jpg",
       "https://res.cloudinary.com/yjcyun/image/upload/v1600914368/ReactFitDB/women-1-2_w0gah0.jpg",
       "https://res.cloudinary.com/yjcyun/image/upload/v1600914368/ReactFitDB/women-1-1_k7cyza.jpg"
@@ -87,8 +93,10 @@
     "category": "men",
     "ratingsAverage": 0,
     "ratingsQuantity": 0,
+    "featured": false,
     "imageCover": "https://res.cloudinary.com/yjcyun/image/upload/v1600914370/ReactFitDB/men-1-cover_upfreq.jpg",
     "images": [
+      "https://res.cloudinary.com/yjcyun/image/upload/v1600914370/ReactFitDB/men-1-cover_upfreq.jpg",
       "https://res.cloudinary.com/yjcyun/image/upload/v1600914370/ReactFitDB/men-1-3_tmbxes.jpg",
       "https://res.cloudinary.com/yjcyun/image/upload/v1600914370/ReactFitDB/men-1-1_tbksab.jpg",
       "https://res.cloudinary.com/yjcyun/image/upload/v1600914370/ReactFitDB/men-1-2_zzz5ni.jpg"
@@ -114,8 +122,10 @@
     "category": "men",
     "ratingsAverage": 0,
     "ratingsQuantity": 0,
+    "featured": true,
     "imageCover": "https://res.cloudinary.com/yjcyun/image/upload/v1600914367/ReactFitDB/men-2-cover_ldieq1.jpg",
     "images": [
+      "https://res.cloudinary.com/yjcyun/image/upload/v1600914367/ReactFitDB/men-2-cover_ldieq1.jpg",
       "https://res.cloudinary.com/yjcyun/image/upload/v1600914370/ReactFitDB/men-1-3_tmbxes.jpg",
       "https://res.cloudinary.com/yjcyun/image/upload/v1600914370/ReactFitDB/men-1-1_tbksab.jpg",
       "https://res.cloudinary.com/yjcyun/image/upload/v1600914370/ReactFitDB/men-1-2_zzz5ni.jpg"
@@ -141,8 +151,10 @@
     "category": "men",
     "ratingsAverage": 0,
     "ratingsQuantity": 0,
+    "featured": true,
     "imageCover": "https://res.cloudinary.com/yjcyun/image/upload/v1600914367/ReactFitDB/men-3-cover_u1kojk.jpg",
     "images": [
+      "https://res.cloudinary.com/yjcyun/image/upload/v1600914367/ReactFitDB/men-3-cover_u1kojk.jpg",
       "https://res.cloudinary.com/yjcyun/image/upload/v1600914370/ReactFitDB/men-1-3_tmbxes.jpg",
       "https://res.cloudinary.com/yjcyun/image/upload/v1600914370/ReactFitDB/men-1-1_tbksab.jpg",
       "https://res.cloudinary.com/yjcyun/image/upload/v1600914370/ReactFitDB/men-1-2_zzz5ni.jpg"
@@ -167,8 +179,10 @@
     "price": 50,
     "category": "bags",
     "ratingsAverage": 3.5,
+    "featured": true,
     "imageCover": "https://res.cloudinary.com/yjcyun/image/upload/v1600914369/ReactFitDB/bag-1-cover_uyce33.jpg",
     "images": [
+      "https://res.cloudinary.com/yjcyun/image/upload/v1600914369/ReactFitDB/bag-1-cover_uyce33.jpg",
       "https://res.cloudinary.com/yjcyun/image/upload/v1600914370/ReactFitDB/bags-1-3_bovrul.jpg",
       "https://res.cloudinary.com/yjcyun/image/upload/v1600914369/ReactFitDB/bags-1-2_mkzsk8.jpg",
       "https://res.cloudinary.com/yjcyun/image/upload/v1600914369/ReactFitDB/bags-1-1_iyoyfd.jpg"
@@ -187,8 +201,10 @@
     "category": "bags",
     "ratingsAverage": 0,
     "ratingsQuantity": 0,
+    "featured": false,
     "imageCover": "https://res.cloudinary.com/yjcyun/image/upload/v1600914369/ReactFitDB/bag-3-cover_kslxra.jpg",
     "images": [
+      "https://res.cloudinary.com/yjcyun/image/upload/v1600914369/ReactFitDB/bag-3-cover_kslxra.jpg",
       "https://res.cloudinary.com/yjcyun/image/upload/v1600914370/ReactFitDB/bags-1-3_bovrul.jpg",
       "https://res.cloudinary.com/yjcyun/image/upload/v1600914369/ReactFitDB/bags-1-2_mkzsk8.jpg",
       "https://res.cloudinary.com/yjcyun/image/upload/v1600914369/ReactFitDB/bags-1-1_iyoyfd.jpg"
@@ -207,8 +223,10 @@
     "category": "bags",
     "ratingsAverage": 0,
     "ratingsQuantity": 0,
+    "featured": false,
     "imageCover": "https://res.cloudinary.com/yjcyun/image/upload/v1600914369/ReactFitDB/bag-2-cover_jzp822.jpg",
     "images": [
+      "https://res.cloudinary.com/yjcyun/image/upload/v1600914369/ReactFitDB/bag-2-cover_jzp822.jpg",
       "https://res.cloudinary.com/yjcyun/image/upload/v1600914370/ReactFitDB/bags-1-3_bovrul.jpg",
       "https://res.cloudinary.com/yjcyun/image/upload/v1600914369/ReactFitDB/bags-1-2_mkzsk8.jpg",
       "https://res.cloudinary.com/yjcyun/image/upload/v1600914369/ReactFitDB/bags-1-1_iyoyfd.jpg"
@@ -227,8 +245,10 @@
     "category": "shoes",
     "ratingsAverage": 0,
     "ratingsQuantity": 0,
+    "featured": false,
     "imageCover": "https://res.cloudinary.com/yjcyun/image/upload/v1600914369/ReactFitDB/shoes-2-cover_s6ae0g.jpg",
     "images": [
+      "https://res.cloudinary.com/yjcyun/image/upload/v1600914369/ReactFitDB/shoes-2-cover_s6ae0g.jpg",
       "https://res.cloudinary.com/yjcyun/image/upload/v1600914368/ReactFitDB/shoes-1-1_ylyulc.jpg",
       "https://res.cloudinary.com/yjcyun/image/upload/v1600914367/ReactFitDB/shoes-1-2_kv0rnz.jpg",
       "https://res.cloudinary.com/yjcyun/image/upload/v1600914368/ReactFitDB/shoes-1-3_yx2og5.jpg"
@@ -254,8 +274,10 @@
     "category": "shoes",
     "ratingsAverage": 0,
     "ratingsQuantity": 0,
+    "featured": true,
     "imageCover": "https://res.cloudinary.com/yjcyun/image/upload/v1600914368/ReactFitDB/shoes-1-cover_cfispg.jpg",
     "images": [
+      "https://res.cloudinary.com/yjcyun/image/upload/v1600914368/ReactFitDB/shoes-1-cover_cfispg.jpg",
       "https://res.cloudinary.com/yjcyun/image/upload/v1600914368/ReactFitDB/shoes-1-1_ylyulc.jpg",
       "https://res.cloudinary.com/yjcyun/image/upload/v1600914367/ReactFitDB/shoes-1-2_kv0rnz.jpg",
       "https://res.cloudinary.com/yjcyun/image/upload/v1600914368/ReactFitDB/shoes-1-3_yx2og5.jpg"
@@ -281,8 +303,10 @@
     "category": "shoes",
     "ratingsAverage": 0,
     "ratingsQuantity": 0,
+    "featured": false,
     "imageCover": "https://res.cloudinary.com/yjcyun/image/upload/v1600914369/ReactFitDB/shoes-3-cover_n5uole.jpg",
     "images": [
+      "https://res.cloudinary.com/yjcyun/image/upload/v1600914369/ReactFitDB/shoes-3-cover_n5uole.jpg",
       "https://res.cloudinary.com/yjcyun/image/upload/v1600914368/ReactFitDB/shoes-1-1_ylyulc.jpg",
       "https://res.cloudinary.com/yjcyun/image/upload/v1600914367/ReactFitDB/shoes-1-2_kv0rnz.jpg",
       "https://res.cloudinary.com/yjcyun/image/upload/v1600914368/ReactFitDB/shoes-1-3_yx2og5.jpg"

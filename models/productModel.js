@@ -20,6 +20,7 @@ const productSchema = new mongoose.Schema(
     summary: {
       type: String
     },
+    featured: Boolean,
     description: {
       type: String
     },

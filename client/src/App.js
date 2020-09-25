@@ -12,6 +12,7 @@ import './App.css';
 import Shop from './components/products/Shop';
 import Product from './components/product/Product';
 import Cart from './components/cart/Cart';
+import Landing from './components/landing/Landing';
 
 const App = ({ loadUser }) => {
   if (localStorage.token) {
@@ -31,6 +32,7 @@ const App = ({ loadUser }) => {
         <Route exact path='/shop' component={Shop} />
         <Route exact path='/shop/:id' component={Product} />
         <Route exact path='/cart' component={Cart} />
+        <Route exact path='/' component={Landing} />
         <PrivateRoute exact path='/my-account' component={AccountDashboard} />
       </Switch>
     </BrowserRouter>
