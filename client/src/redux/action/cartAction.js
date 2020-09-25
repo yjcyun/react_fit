@@ -14,7 +14,7 @@ export const addItem = (item, qty, color, size) => dispatch => {
 }
 
 // REMOVE ITEM FROM CART
-export const removeItem = item => ({ type: REMOVE_ITEM, payload: item });
+export const removeItem = (item, qty) => ({ type: REMOVE_ITEM, payload: [item, qty] });
 
 // CLEAR ITEM FROM CART
 export const clearItem = item => dispatch => {

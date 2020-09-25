@@ -3,44 +3,46 @@ import { FiMinus, FiPlus } from 'react-icons/fi'
 import { IoIosClose } from 'react-icons/io'
 import styled from 'styled-components'
 
-const CartItem = () => {
+const CartItem = ({ item, removeItem, addItem, clearItem }) => {
+  
   return (
     <CartItemStyled>
-    <div className='product'>
-      <div className='img-container'>
-        <img src='https://res.cloudinary.com/yjcyun/image/upload/v1600914370/ReactFitDB/men-1-cover_upfreq.jpg' alt='' />
+      <div className='product'>
+        <div className='img-container'>
+          <img src={item.imageCover} alt={item.name} />
+        </div>
+        <div className='product-desc'>
+          <span>{item.name}</span>
+          <span>Color: {item.color}</span>
+          <span>Size: {item.size}</span>
+        </div>
       </div>
-      <div className='product-desc'>
-        <span>Product Name</span>
-        <span>Color:</span>
-        <span>Size:</span>
+      <div className='price'>${item.price.toFixed(2)}</div>
+      <div className='quantity-selector'>
+        <button
+          className='minus'
+          onClick={() => removeItem(item, item.quantity)}
+        >
+          <FiMinus className='icon' />
+        </button>
+        <span className='amount'>
+          {item.quantity}
+        </span>
+        <button
+          className='plus'
+          onClick={() => addItem(item, item.quantity, item.color, item.size)}
+        >
+          <FiPlus className='icon' />
+        </button>
       </div>
-    </div>
-    <div className='price'>$12.00</div>
-    <div className='quantity-selector'>
-      <button
-        className='minus'
-      >
-        <FiMinus className='icon' />
-      </button>
-      <input
-        type='text'
-        className='amount'
-      />
-      <button
-        className='plus'
-      >
-        <FiPlus className='icon' />
-      </button>
-    </div>
 
-    <div className='total'>
-      $140.00
-    </div>
-    <div className='remove icon'>
-      <IoIosClose />
-    </div>
-  </CartItemStyled>
+      <div className='total'>
+        ${(item.quantity * item.price).toFixed(2)}
+      </div>
+      <div className='remove icon' onClick={() => clearItem(item)}>
+        <IoIosClose />
+      </div>
+    </CartItemStyled >
   )
 }
 
@@ -74,14 +76,16 @@ const CartItemStyled = styled.div`
   .quantity-selector{
     display: flex;
     justify-content:center;
-    button, input {
+    button, .amount {
       border: none;
       border: 1px solid rgba(136,136,136,.12);
       height: 43px;
     }
-    input {
+    .amount {
       width: 40px;
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     button {
       padding: 0 10px;

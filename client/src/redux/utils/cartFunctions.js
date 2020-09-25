@@ -13,7 +13,7 @@ export const addItemToCart = (cartItems, itemToAdd) => {
       cartItem.id === itemAdded.id
         ? {
           ...cartItem,
-          quantity: cartItem.quantity + qty,
+          quantity: cartItem.quantity + 1,
           color,
           size
         }
@@ -25,15 +25,17 @@ export const addItemToCart = (cartItems, itemToAdd) => {
 }
 
 export const removeItemFromCart = (cartItems, itemToRemove) => {
+  const itemRemoved= itemToRemove[0];
+
   // CHECK IF ITEM BEING REMOVED EXISTS IN CART
-  const existingCartItem = cartItems.find(cartItem => cartItem.id === itemToRemove.id);
+  const existingCartItem = cartItems.find(cartItem => cartItem.id === itemRemoved.id);
 
   // IF THERE'S ONLY ONE ITEM, REMOVE ITEM ENTIRELY
   if (existingCartItem.quantity === 1) {
-    return cartItems.filter(cartItem => cartItem.id !== itemToRemove.id)
+    return cartItems.filter(cartItem => cartItem.id !== itemRemoved.id)
   }
   // IF QTY > 1, SUBTRACT 1 FROM QTY
-  return cartItems.map(cartItem => cartItem.id === itemToRemove
+  return cartItems.map(cartItem => cartItem.id === itemRemoved.id
     ? { ...cartItem, quantity: cartItem.quantity - 1 }
     : cartItem
   )

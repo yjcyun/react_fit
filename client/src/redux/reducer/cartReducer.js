@@ -22,7 +22,6 @@ export const cartReducer = (state = INITIAL_STATE, action) => {
     case ADD_ITEM:
       return {
         ...state,
-        hidden: false,
         cartItems: addItemToCart(state.cartItems, payload)
       }
     case REMOVE_ITEM:

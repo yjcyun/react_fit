@@ -1,30 +1,48 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import styled from 'styled-components'
+import { addItem, clearItem, removeItem } from '../../redux/action/cartAction'
+
 import Banner from '../layout/Banner'
-import Button from '../layout/Button'
 import CartHeader from './CartHeader'
 import CartItem from './CartItem'
 import PaymentOptions from './PaymentOptions'
 
-const Cart = ({cart:{cartItems}}) => {
-  console.log(cartItems)
+
+import styled from 'styled-components'
+import EmptyCart from './EmptyCart'
+
+const Cart = ({ cart: { cartItems }, removeItem, addItem, clearItem }) => {
+
   return (
     <>
       <Banner dark>
         <h1>cart</h1>
       </Banner>
       <CartStyled className='container'>
-        <ShoppingBag>
-          <CartHeader />
-          
-          <CartItem />
-        </ShoppingBag>
-        <PaymentOptions />
+        {cartItems.length === 0
+          ? <EmptyCart />
+          : <>
+            <ShoppingBag>
+              <CartHeader />
+              {cartItems.map(item => (
+                <CartItem
+                  key={item.id}
+                  item={item}
+                  addItem={addItem}
+                  removeItem={removeItem}
+                  clearItem={clearItem}
+                />
+              ))}
+            </ShoppingBag>
+            <PaymentOptions item={cartItems} />
+          </>
+        }
       </CartStyled>
     </>
   )
 }
+
+
 
 const CartStyled = styled.div`
   margin: 2rem auto 7rem;
@@ -41,4 +59,5 @@ const mapStateTopProps = state => ({
   cart: state.cart
 });
 
-export default connect(mapStateTopProps)(Cart)
+
+export default connect(mapStateTopProps, { addItem, removeItem, clearItem })(Cart)
