@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 import { getProducts } from '../../redux/action/productAction'
 import ShopItem from './ShopItem'
 import styled from 'styled-components'
+import Spinner from '../layout/Spinner'
 
 // GET UNIQUES VALUES OF CATEGORY
 // const onlyUnique = (products) => {
@@ -35,7 +36,7 @@ const Shop = ({ getProducts, product: { loading, products } }) => {
   return (
     <>
       {loading
-        ? <div>Loading...</div>
+        ? <Spinner />
         : (
           <div>
             <Banner dark>

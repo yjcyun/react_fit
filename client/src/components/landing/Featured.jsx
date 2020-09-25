@@ -6,6 +6,7 @@ import { FiChevronRight, FiChevronLeft } from 'react-icons/fi'
 import { getProducts } from '../../redux/action/productAction'
 import 'pure-react-carousel/dist/react-carousel.es.css'
 import styled from 'styled-components'
+import Spinner from '../layout/Spinner'
 
 const Featured = ({ products: { products, loading }, getProducts }) => {
   useEffect(() => {
@@ -34,7 +35,7 @@ const Featured = ({ products: { products, loading }, getProducts }) => {
   return (
     <>
       {loading
-        ? <div>Loading...</div>
+        ? <Spinner />
         : <FeaturedStyled className='container'>
           <h2>Featured products</h2>
           {/* FIXME: NOT MOBILE RESPONSIVE */}

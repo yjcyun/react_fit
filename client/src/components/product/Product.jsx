@@ -7,6 +7,7 @@ import Banner from '../layout/Banner'
 import ProductImages from './ProductImages';
 import ProductContent from './ProductContent';
 import Description from './Description'
+import Spinner from '../layout/Spinner'
 
 const Product = ({ match, getProduct, auth: { loading }, product }) => {
   useEffect(() => {
@@ -15,7 +16,7 @@ const Product = ({ match, getProduct, auth: { loading }, product }) => {
 
   return (
     loading || product === null
-      ? <div>Loading...</div>
+      ? <Spinner />
       : (<>
         <Banner>
           <ul>

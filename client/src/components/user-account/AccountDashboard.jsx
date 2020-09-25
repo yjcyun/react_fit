@@ -5,12 +5,13 @@ import AccountLayout from './AccountLayout'
 import { accountDashboardList } from '../../constants/account-nav'
 import { connect } from 'react-redux'
 import { logout } from '../../redux/action/authAction'
+import Spinner from '../layout/Spinner'
 
 const AccountDashboard = ({ auth: { user, loading }, logout }) => {
   return (
     <>
       {loading
-        ? <div>Loading...</div>
+        ? <Spinner />
         : (<>
           <Banner dark>
             <h1>my account</h1>
