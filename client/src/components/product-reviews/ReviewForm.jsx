@@ -2,38 +2,70 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import StarRatings from 'react-star-ratings'
 import Button from '../layout/Button'
+import { connect } from 'react-redux'
+import { addReview } from '../../redux/action/reviewAction'
+import { IoIosWarning } from 'react-icons/io'
 
-const ReviewForm = ({ openReview }) => {
-  const [rating, setRating] = useState(0);
-  // CHANGE RATING
-  const changeRating = newRating => setRating(newRating);
-  const handleReviewInputs = formData => {
+const ReviewForm = ({ openReview, addReview, product, setOpenReview }) => {
+  const [formData, setFormData] = useState({
+    rating: 0,
+    title: '',
+    review: ''
+  });
+  const [alert, setAlert] = useState(false);
 
+  // HANDLE FORM SUBMIT
+  const onFormSubmit = (e) => {
+    e.preventDefault();
+    if (formData.rating === 0 || formData.title === '' || formData.review === '') {
+      setAlert(true);
+    }
+    addReview(product.id, formData);
+    setAlert(false);
+    setOpenReview(false);
   }
-  
+
   return (
     <ReviewFormStyled open={openReview}>
-      <form>
+      <form onSubmit={(e) => onFormSubmit(e)}>
         <div className='form-control'>
+          {alert &&
+            <div className='warning'>
+              <IoIosWarning className='icon' />You must complete all fields</div>
+          }
           <label>Your rating*</label>
           <StarRatings
-            rating={rating}
+            name='rating'
+            rating={formData.rating}
             starDimension='17px'
             starSpacing='0px'
             starRatedColor='var(--primary-clr)'
-            changeRating={changeRating}
+            changeRating={e => setFormData({ ...formData, rating: e })}
             starSelectingHoverColor='var(--primary-clr)'
           />
         </div>
         <div className='form-control'>
           <label>Add a headline*</label>
-          <input type='text' required />
+          <input
+            type='text'
+            name='title'
+            value={formData.title}
+            onChange={e => setFormData({ ...formData, title: e.target.value })}
+          />
         </div>
         <div className='form-control'>
           <label>Write your review *</label>
-          <textarea name='' cols='30' rows='5' required />
+          <textarea
+            name='review'
+            value={formData.review}
+            cols='30'
+            rows='5'
+            onChange={e => setFormData({ ...formData, review: e.target.value })}
+          />
         </div>
-        <Button>Submit</Button>
+        <div className='btn-container' type='submit'>
+          <Button>Submit</Button>
+        </div>
       </form>
     </ReviewFormStyled>
   )
@@ -44,6 +76,15 @@ const ReviewFormStyled = styled.div`
   background-color: var(--light-bg);
   padding: 2rem;
   display: ${props => props.open ? 'block' : 'none'};
+  .warning {
+    color: tomato;
+    margin-bottom: 0.5rem;
+    .icon {
+      vertical-align: middle;
+      margin-bottom: 2px;
+      margin-right: 0.3rem;
+    }
+  }
   label {
     margin-right: 0.5rem;
   }
@@ -60,4 +101,4 @@ const ReviewFormStyled = styled.div`
   }
 `
 
-export default ReviewForm
+export default connect(null, { addReview })(ReviewForm)

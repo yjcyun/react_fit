@@ -3,7 +3,8 @@ import { ADD_REVIEW, DELETE_REVIEW, GET_REVIEWS, REVIEW_ERROR, UPDATE_REVIEW } f
 const INITIAL_STATE = {
   reviews: [],
   loading: true,
-  errors: {}
+  errors: {},
+  user: {}
 };
 
 export const reviewReducer = (state = INITIAL_STATE, action) => {
