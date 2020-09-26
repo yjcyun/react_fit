@@ -64,6 +64,8 @@ const NavbarStyled = styled.nav`
   align-items: center;
   padding: 0 5rem;
   z-index:100;
+  box-shadow:0 10px 30px -10px rgba(0,0,0,0.1);
+
   li{
     margin: 0 1rem;
     cursor: pointer;

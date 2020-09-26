@@ -7,7 +7,7 @@ const Spinner = () => {
       <img 
       src={loader} 
       alt='Loading...'
-        style={{display:'flex', justifyContent:'center'}}
+        style={{display:'flex', justifyContent:'center', width: '300px', height:'300px'}}
       />
     </>
   )

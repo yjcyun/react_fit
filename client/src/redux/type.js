@@ -19,4 +19,10 @@ export const ADD_ITEM = 'ADD_ITEM';
 export const REMOVE_ITEM = 'REMOVE_ITEM';
 export const CLEAR_ITEM = 'CLEAR_ITEM';
 export const TOGGLE_SIDECART = 'TOGGLE_SIDECART';
+// REVIEW
+export const GET_REVIEWS = 'GET_REVIEWS';
+export const ADD_REVIEW = 'ADD_REVIEW';
+export const UPDATE_REVIEW = 'UPDATE_REVIEW';
+export const DELETE_REVIEW = 'DELETE_REVIEW';
+export const REVIEW_ERROR = 'REVIEW_ERROR';
 

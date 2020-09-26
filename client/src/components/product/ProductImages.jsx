@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
-const ProductImages = ({product}) => {
+const ProductImages = ({ product }) => {
   const [imgIndex, setImgIndex] = useState(0);
 
   const handleOnClick = index => setImgIndex(index);
@@ -27,8 +27,23 @@ const ImagesStyled = styled.div`
     width: 80%;
     cursor: pointer;
   }
+  
   .image-cover {
     position:relative;
+  }
+
+  @media(max-width: 768px) {
+    grid-template-columns: 1fr;
+    .thumbnail{
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      grid-gap: 0.5rem;
+      grid-row: 2;
+    }
+    .image-cover{
+      grid-row: 1
+    }
   }
 `
 
