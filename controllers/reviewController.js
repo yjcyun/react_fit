@@ -1,4 +1,5 @@
 const { validationResult } = require("express-validator");
+const APIFeatures = require("../middlewares/apiFeatures");
 const Review = require("../models/reviewModel");
 
 // SET PRODUCT AND USER 
@@ -11,7 +12,16 @@ exports.setProductUserIds = (req, res, next) => {
 // FETCH ALL REVIEWS
 exports.getReviews = async (req, res) => {
   try {
-    const reviews = await Review.find().sort({ createdAt: -1 });
+    let filter = {};
+    if (req.params.productId) filter = { product: req.params.productId };
+
+    const features = new APIFeatures(Review.find(filter), req.query)
+      .filter()
+      .sort()
+      .limitFields()
+      .paginate()
+
+    const reviews = await features.query;
     res.status(200).json(reviews);
 
   } catch (err) {
@@ -79,8 +89,8 @@ exports.deleteReview = async (req, res) => {
 
   } catch (err) {
     console.log(err.kind);
-    if(err.kind==='ObjectId'){
-      return res.status(404).json({msg: 'Review not found'});
+    if (err.kind === 'ObjectId') {
+      return res.status(404).json({ msg: 'Review not found' });
     }
     res.status(500).send('Server Error');
   }

@@ -6,23 +6,25 @@ const { check } = require('express-validator');
 const router = express.Router({ mergeParams: true });
 
 // @route  api/v1/products/productId/reviews
-router.get('/', reviewController.getReviews);
+router
+  .route('/')
+  .get(reviewController.getReviews)
+  .post(
+    [auth, [
+      check('review', 'Review is required').not().isEmpty()
+    ]],
+    reviewController.setProductUserIds,
+    reviewController.createReview
+  );
 
-router.post('/',
-  [auth, [
-    check('review', 'Review is required').not().isEmpty()
-  ]],
-  reviewController.setProductUserIds,
-  reviewController.createReview
-);
-
-router.patch('/:reviewId',
-  [auth, [
-    check('review', 'Review is required').not().isEmpty()
-  ]],
-  reviewController.updateReview
-);
-
-router.delete('/:reviewId', auth, reviewController.deleteReview )
+router
+  .route('/:reviewId')
+  .patch(
+    [auth, [
+      check('review', 'Review is required').not().isEmpty()
+    ]],
+    reviewController.updateReview
+  )
+  .delete(auth, reviewController.deleteReview);
 
 module.exports = router

@@ -9,20 +9,25 @@ const reviewSchema = new mongoose.Schema(
     },
     rating: {
       type: Number,
+      required: [true, 'Review must have a rating'],
       min: 1,
       max: 5
+    },
+    title: {
+      type:String,
+      required: [true, 'Title cannot be empty']
     },
     createdAt: {
       type: Date,
       default: Date.now
     },
     product: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: mongoose.Schema.ObjectId,
       ref: 'Product',
       required: [true, 'Review must belong to a product']
     },
     user: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: mongoose.Schema.ObjectId,
       ref: 'User',
       required: [true, 'Review must belong to a user']
     }

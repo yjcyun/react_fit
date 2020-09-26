@@ -7,12 +7,14 @@ import ProductImages from './ProductImages';
 import ProductContent from './ProductContent';
 import Description from './Description'
 import Spinner from '../layout/Spinner'
-import Reviews from './Reviews'
+import Reviews from '../product-reviews/Reviews'
+import { getReviews } from '../../redux/action/reviewAction'
 
-const Product = ({ match, getProduct, auth: { loading }, product }) => {
+const Product = ({ match, getProduct, auth: { loading }, product, getReviews, reviews }) => {
   useEffect(() => {
     getProduct(match.params.id);
-  }, [getProduct, match.params.id]);
+    getReviews(match.params.id);
+  }, [getProduct, match.params.id, getReviews]);
 
   return (
     loading || product === null
@@ -24,7 +26,7 @@ const Product = ({ match, getProduct, auth: { loading }, product }) => {
             <ProductContent product={product} />
           </ProductInfo>
           <Description product={product} />
-          <Reviews product={product}/>
+          <Reviews product={product} reviews={reviews} />
         </Main>
       </>)
   )
@@ -45,7 +47,8 @@ const ProductInfo = styled.section`
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  product: state.product.product
+  product: state.product.product,
+  reviews: state.reviews
 });
 
-export default connect(mapStateToProps, { getProduct })(Product)
+export default connect(mapStateToProps, { getProduct, getReviews })(Product)

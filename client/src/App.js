@@ -6,14 +6,13 @@ import { setAuthToken } from './redux/utils/setAuthToken';
 import PrivateRoute from './components/routing/PrivateRoute';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
-import Navbar from './components/layout/Navbar';
 import AccountDashboard from './components/user-account/AccountDashboard';
-import './App.css';
 import Shop from './components/products/Shop';
 import Product from './components/product/Product';
 import Cart from './components/cart/Cart';
 import Landing from './components/landing/Landing';
 import Layout from './components/layout/Layout';
+import './App.css';
 
 const App = ({ loadUser }) => {
   if (localStorage.token) {

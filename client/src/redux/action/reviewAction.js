@@ -4,8 +4,9 @@ import { ADD_REVIEW, DELETE_REVIEW, GET_REVIEWS, REVIEW_ERROR, UPDATE_REVIEW } f
 // GET ALL REVIEWS
 export const getReviews = (productId) => async dispatch => {
   try {
-    const res = await axios.get(`api/v1/products/${productId}/reviews`);
+    const res = await axios.get(`/api/v1/products/${productId}/reviews`);
     dispatch({ type: GET_REVIEWS, payload: res.data });
+    
   } catch (err) {
     dispatch({ type: REVIEW_ERROR, payload: { msg: err.response.statusText, status: err.response.status } });
   }
@@ -35,7 +36,7 @@ export const deleteReview = (productId, reviewId) => async dispatch => {
     dispatch({ type: DELETE_REVIEW, payload: reviewId });
 
   } catch (err) {
-    dispatch({ type: POST_ERROR, payload: { msg: err.response.statusText, status: err.response.status } });
+    dispatch({ type: REVIEW_ERROR, payload: { msg: err.response.statusText, status: err.response.status } });
   }
 }
 
