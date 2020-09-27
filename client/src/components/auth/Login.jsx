@@ -38,7 +38,6 @@ const Login = ({ showAlert, login, isAuthenticated }) => {
       btnText='register'
     >
       <h2><IoIosLogIn className='icon' />Login</h2>
-      <p className='alarm'>Try logging in with default@example.com - test1234 or create your own account</p>
       <form onSubmit={e => onFormSubmit(e)}>
         <FormControl>
           <label>Email <span>*</span></label>
@@ -46,7 +45,6 @@ const Login = ({ showAlert, login, isAuthenticated }) => {
             type='email'
             name='email'
             value={email}
-            placeholder='default@email.com'
             onChange={(e) => onInputChange(e)}
           />
         </FormControl>
@@ -55,7 +53,6 @@ const Login = ({ showAlert, login, isAuthenticated }) => {
           <input
             type='password'
             name='password'
-            placeholder='test1234'
             value={password}
             onChange={(e) => onInputChange(e)}
             autoComplete='on'

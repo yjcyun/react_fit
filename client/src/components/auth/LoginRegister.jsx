@@ -19,7 +19,7 @@ const LoginRegister = ({ children, title, desc }) => {
         <InactiveColumn>
           <h2>{title}</h2>
           <p>{desc}</p>
-          <Link to={`/my-account/${title}`} style={{marginTop:'1.5rem'}}>
+          <Link to={`/my-account/${title}`}>
             <Button type='button' dark>{title}</Button>
           </Link>
         </InactiveColumn>
@@ -40,9 +40,6 @@ const LoginRegisterStyled = styled.section`
     margin-bottom: 2rem;
     text-transform: capitalize;
   } 
-  .alarm {
-    margin-bottom: 1rem;
-  }
   @media (min-width: 768px) {
     margin: 2rem auto 8rem;
   }
