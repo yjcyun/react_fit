@@ -1,0 +1,5 @@
+{
+  "mongoURI": "mongodb+srv://christinayun:7MVGGYdLa2ZQwaxh@reactfit.ps97x.mongodb.net/ReactFit?retryWrites=true&w=majority",
+  "jwtSecret": "hellomars1and2chester-thisis5mysuperlong6-jwt7secret",
+  "stripeSecretKey": "sk_test_51HRLnVLvko24kY0NQo3Top5pObGeifUmaTXOSapXOQOO0YHZYcIRGJ0qclBSGiBVPeJolxwqmDrPGFPzz8o8IkAa00mfEkjghT"
+}

@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { clearItem, toggleSideCart } from '../../redux/action/cartAction'
 import { Link, Redirect } from 'react-router-dom'
 import emptyCart from '../../assets/shopping-cart.png'
+import Button from '../layout/Button'
 
 
 const SideCart = ({ cart, close, clearItem, toggleSideCart, auth: { isAuthenticated } }) => {
@@ -51,12 +52,8 @@ const SideCart = ({ cart, close, clearItem, toggleSideCart, auth: { isAuthentica
             <div className='buttons'>
               <Link to='/cart' onClick={() => toggleSideCart()}><button>view cart</button></Link>
               <div>
-                {!isAuthenticated
-                  ? <button className='checkout-btn'>Log in to checkout</button>
-                  : <button className='checkout-btn'>checkout</button>
-                }
+                <Button dark>checkout</Button>
               </div>
-
             </div>
           </Footer>
         }
@@ -188,10 +185,6 @@ const Footer = styled.div`
       font-size: 1rem;
       cursor: pointer;
       transition: all 0.2s;
-    }
-    .checkout-btn {
-      background-color: var(--primary-clr);
-      color: var(--light-clr);
     }
     button:hover {
       background-color: #3e3e3e;
