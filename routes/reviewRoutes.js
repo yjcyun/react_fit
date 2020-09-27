@@ -27,15 +27,15 @@ router
   )
   .delete(auth, reviewController.deleteReview);
 
-// @route  api/v1/products/productId/reviews/like/:id
+// @route  api/v1/products/productId/reviews/:reviewId/likes
 router
-  .route('/like/:id')
-  .patch(auth, reviewController.updateLikes)
+  .route('/likes/:id')
+  .put(auth, reviewController.updateLikes)
 
 // @route  api/v1/products/productId/reviews/unlike/:id
 router
-  .route('/unlike/:id')
-  .patch(auth, reviewController.updateUnlikes)
+  .route('/unlikes/:id')
+  .put(auth, reviewController.updateUnlikes)
 
 
 module.exports = router

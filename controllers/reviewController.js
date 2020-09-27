@@ -101,14 +101,18 @@ exports.updateLikes = async (req, res) => {
   try {
     const review = await Review.findById(req.params.id);
 
-    // 1) CHECK IF THE POST HAS ALREADY BEEN LIKED BY THIS USER
-    if (review.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
-      return res.status(400).json({ msg: 'Review already liked' });
-    }
+    // CHECk IF THE REVIEW HAS BEEN UNLIKED BY THIS USER
+    const isUnlikedByUser = review.unlikes.filter(({ user }) => user.toString() === req.user.id).length > 0;
 
-    review.likes.unshift({ user: req.user.id });
+    // CHECK IF THE REVIEW HAS ALREADY BEEN LIKED BY THIS USER
+    const isLikedByUser = review.likes.filter(({ user }) => user.toString() === req.user.id).length > 0;
+
+    review.likes = isLikedByUser
+      ? review.likes.filter(({ user }) => user.toString() !== req.user.id)
+      : [...review.likes, { user: req.user.id }]
+
     await review.save();
-    res.json(review.likes);
+    return res.status(201).json(review.likes);
 
   } catch (err) {
     console.log(err.message);
@@ -120,17 +124,15 @@ exports.updateUnlikes = async (req, res) => {
   try {
     const review = await Review.findById(req.params.id);
 
-    // 1) CHECK IF THE POST HAS BEEN LIKED YET BY THIS USER
-    if (review.likes.filter(like => like.user.toString() === req.user.id).length === 0) {
-      return res.status(400).json({ msg: 'Review has not yet been liked' });
-    }
-
-    // 2) GET REMOVE INDEX
-    const removeIndex = review.likes.map(like => like.user.toString()).indexOf(req.user.id);
-    review.likes.splice(removeIndex, 1);
+    // 1) CHECK IF THE REVIEW HAS ALREADY BEEN UNLIKED BY THIS USER
+    const isUnlikedByUser = review.unlikes.filter(({ user }) => user.toString() === req.user.id).length > 0;
+    console.log(isUnlikedByUser);
+    review.unlikes = isUnlikedByUser
+      ? review.unlikes.filter(({ user }) => user.toString() !== req.user.id)
+      : [...review.unlikes, { user: req.user.id }]
 
     await review.save();
-    res.json(review.likes);
+    return res.status(201).json(review.unlikes);
 
   } catch (err) {
     console.log(err.message);

@@ -14,14 +14,7 @@ const ProductContent = ({ product, addItem }) => {
   const [size, setSize] = useState(null);
   const [activeIndexColor, setActiveIndexColor] = useState(null);
   const [activeIndexSize, setActiveIndexSize] = useState(null);
-  const [inStock, setInStock] = useState(0);
   const [warning, setWarning] = useState('')
-
-  //TODO: results in an infinite loop. 
-  // product.stock.map(item => {
-  //  return item.qty === 0 ? setInStock(0) : setInStock(item.qty)
-  // })
-
 
   return (
     <ContentStyled>
@@ -64,7 +57,6 @@ const ProductContent = ({ product, addItem }) => {
             setSize={setSize}
             setActiveIndex={setActiveIndexSize}
             activeIndex={activeIndexSize}
-            inStock={inStock}
           />
         </span>
       </div>

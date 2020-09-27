@@ -9,7 +9,7 @@ const ShopItem = ({ product }) => {
         <div className='product-cover'>
           <img src={product.imageCover} alt={product.name} className='img-cover' />
           <div className='img-hover'>
-            <img src={product.images[0]} alt={product.name} />
+            <img src={product.images[1]} alt={product.name} />
             <div className='hover-footer'>
               <div className='footer-icon-wrapper'>
                 <FiShoppingCart className='footer-icon' />

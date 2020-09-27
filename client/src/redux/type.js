@@ -26,4 +26,5 @@ export const UPDATE_REVIEW = 'UPDATE_REVIEW';
 export const DELETE_REVIEW = 'DELETE_REVIEW';
 export const REVIEW_ERROR = 'REVIEW_ERROR';
 export const UPDATE_LIKES = 'UPDATE_LIKES';
+export const UPDATE_UNLIKES = 'UPDATE_UNLIKES';
 

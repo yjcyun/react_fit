@@ -3,9 +3,9 @@ import styled from 'styled-components'
 import { FiUser, FiThumbsUp, FiThumbsDown } from 'react-icons/fi'
 import StarRatings from 'react-star-ratings'
 import { connect } from 'react-redux'
-import { addLike, deleteReview, removeLike } from '../../redux/action/reviewAction'
+import { addLike, deleteReview,  toggleUnlike } from '../../redux/action/reviewAction'
 
-const ReviewList = ({ reviews, deleteReview, product, addLike, removeLike }) => {
+const ReviewList = ({ reviews, deleteReview, product, addLike, toggleUnlike }) => {
   return (
     <ReviewListStyled>
       {reviews.map(review => (
@@ -39,7 +39,7 @@ const ReviewList = ({ reviews, deleteReview, product, addLike, removeLike }) => 
               <FiThumbsUp className='icon' />
               {review.likes.length}
             </button>
-            <button onClick={() => removeLike(product.id, review.id)}><FiThumbsDown className='icon' />0</button>
+            <button onClick={() => toggleUnlike(product.id, review.id)}><FiThumbsDown className='icon' />{review.unlikes.length}</button>
           </div>
         </div>
       ))}
@@ -114,4 +114,4 @@ const ReviewListStyled = styled.div`
 
 
 
-export default connect(null, { deleteReview, addLike, removeLike })(ReviewList)
+export default connect(null, { deleteReview, addLike, toggleUnlike})(ReviewList)

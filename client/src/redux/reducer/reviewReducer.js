@@ -1,4 +1,4 @@
-import { ADD_REVIEW, DELETE_REVIEW, GET_REVIEWS, REVIEW_ERROR, UPDATE_LIKES, UPDATE_REVIEW } from "../type";
+import { ADD_REVIEW, DELETE_REVIEW, GET_REVIEWS, REVIEW_ERROR, UPDATE_LIKES, UPDATE_REVIEW, UPDATE_UNLIKES } from "../type";
 
 const INITIAL_STATE = {
   reviews: [],
@@ -40,6 +40,15 @@ export const reviewReducer = (state = INITIAL_STATE, action) => {
         reviews: state.reviews.map(review =>
           review.id === payload.reviewId
             ? { ...review, likes: payload.likes }
+            : review),
+        loading: false
+      }
+    case UPDATE_UNLIKES:
+      return {
+        ...state,
+        reviews: state.reviews.map(review =>
+          review.id === payload.reviewId
+            ? { ...review, unlikes: payload.unlikes }
             : review),
         loading: false
       }
