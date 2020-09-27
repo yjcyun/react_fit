@@ -27,4 +27,15 @@ router
   )
   .delete(auth, reviewController.deleteReview);
 
+// @route  api/v1/products/productId/reviews/like/:id
+router
+  .route('/like/:id')
+  .patch(auth, reviewController.updateLikes)
+
+// @route  api/v1/products/productId/reviews/unlike/:id
+router
+  .route('/unlike/:id')
+  .patch(auth, reviewController.updateUnlikes)
+
+
 module.exports = router

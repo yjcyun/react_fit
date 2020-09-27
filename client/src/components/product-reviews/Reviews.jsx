@@ -23,8 +23,8 @@ const Reviews = ({ product, reviews: { loading, reviews } }) => {
             product={product}
             toggleReviewForm={toggleReviewForm}
           />
-          <ReviewForm openReview={openReview} product={product} setOpenReview={setOpenReview}/>
-          <ReviewList reviews={reviews} product={product}/>
+          <ReviewForm openReview={openReview} product={product} setOpenReview={setOpenReview} />
+          <ReviewList reviews={reviews} product={product} />
         </ReviewsStyled>
       </>
   )

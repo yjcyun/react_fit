@@ -21,6 +21,22 @@ const reviewSchema = new mongoose.Schema(
       type: Date,
       default: Date.now
     },
+    likes:[
+      {
+        user:{
+          type: mongoose.Schema.ObjectId,
+          ref:'User'
+        }
+      }
+    ],
+    unlikes:[
+      {
+        user:{
+          type: mongoose.Schema.ObjectId,
+          ref:'User'
+        }
+      }
+    ],
     product: {
       type: mongoose.Schema.ObjectId,
       ref: 'Product',

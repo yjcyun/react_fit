@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { ADD_REVIEW, DELETE_REVIEW, GET_REVIEWS, REVIEW_ERROR, UPDATE_REVIEW } from '../type';
+import { ADD_REVIEW, DELETE_REVIEW, GET_REVIEWS, REVIEW_ERROR, UPDATE_LIKES, UPDATE_REVIEW } from '../type';
 import { getProduct } from './productAction';
 
 // GET ALL REVIEWS
@@ -54,6 +54,31 @@ export const updateReview = (productId, reviewId, formData) => async dispatch =>
   try {
     const res = await axios.post(`/api/v1/products/${productId}/reviews/${reviewId}`, formData, config);
     dispatch({ type: UPDATE_REVIEW, payload: res.data });
+
+  } catch (err) {
+    dispatch({ type: REVIEW_ERROR, payload: { msg: err.response.statusText, status: err.response.status } });
+  }
+}
+
+// ADD LIKES
+export const addLike = (productId, reviewId) => async dispatch => {
+  try {
+    const res = await axios.patch(`/api/v1/products/${productId}/reviews/like/${reviewId}`);
+    dispatch({
+      type: UPDATE_LIKES,
+      payload: { reviewId, likes: res.data }
+    });
+
+  } catch (err) {
+    dispatch({ type: REVIEW_ERROR, payload: { msg: err.response.statusText, status: err.response.status } });
+  }
+}
+
+// REMOVE LIKES
+export const removeLike = (productId, reviewId) => async dispatch => {
+  try {
+    const res = await axios.patch(`/api/v1/products/${productId}/reviews/unlike/${reviewId}`);
+    dispatch({ type: UPDATE_LIKES, payload: { reviewId, likes: res.data } });
 
   } catch (err) {
     dispatch({ type: REVIEW_ERROR, payload: { msg: err.response.statusText, status: err.response.status } });

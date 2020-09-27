@@ -14,7 +14,7 @@ const ReviewForm = ({ openReview, addReview, product, setOpenReview, auth: { isA
     review: ''
   });
   const [alert, setAlert] = useState(false);
-  console.log(isAuthenticated)
+  
   // HANDLE FORM SUBMIT
   const onFormSubmit = (e) => {
     e.preventDefault();

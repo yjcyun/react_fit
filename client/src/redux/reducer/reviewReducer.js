@@ -1,8 +1,9 @@
-import { ADD_REVIEW, DELETE_REVIEW, GET_REVIEWS, REVIEW_ERROR, UPDATE_REVIEW } from "../type";
+import { ADD_REVIEW, DELETE_REVIEW, GET_REVIEWS, REVIEW_ERROR, UPDATE_LIKES, UPDATE_REVIEW } from "../type";
 
 const INITIAL_STATE = {
   reviews: [],
   loading: true,
+  review: null,
   errors: {},
   user: {}
 };
@@ -32,6 +33,15 @@ export const reviewReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         reveiws: state.reviews.filter(review => review.id !== payload)
+      }
+    case UPDATE_LIKES:
+      return {
+        ...state,
+        reviews: state.reviews.map(review =>
+          review.id === payload.reviewId
+            ? { ...review, likes: payload.likes }
+            : review),
+        loading: false
       }
     case REVIEW_ERROR:
       return {

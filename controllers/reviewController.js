@@ -95,3 +95,45 @@ exports.deleteReview = async (req, res) => {
     res.status(500).send('Server Error');
   }
 }
+
+// UPDATE LIKES
+exports.updateLikes = async (req, res) => {
+  try {
+    const review = await Review.findById(req.params.id);
+
+    // 1) CHECK IF THE POST HAS ALREADY BEEN LIKED BY THIS USER
+    if (review.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
+      return res.status(400).json({ msg: 'Review already liked' });
+    }
+
+    review.likes.unshift({ user: req.user.id });
+    await review.save();
+    res.json(review.likes);
+
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send('Server Error');
+  }
+}
+
+exports.updateUnlikes = async (req, res) => {
+  try {
+    const review = await Review.findById(req.params.id);
+
+    // 1) CHECK IF THE POST HAS BEEN LIKED YET BY THIS USER
+    if (review.likes.filter(like => like.user.toString() === req.user.id).length === 0) {
+      return res.status(400).json({ msg: 'Review has not yet been liked' });
+    }
+
+    // 2) GET REMOVE INDEX
+    const removeIndex = review.likes.map(like => like.user.toString()).indexOf(req.user.id);
+    review.likes.splice(removeIndex, 1);
+
+    await review.save();
+    res.json(review.likes);
+
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send('Server Error');
+  }
+}

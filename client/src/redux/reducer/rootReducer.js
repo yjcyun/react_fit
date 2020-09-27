@@ -18,7 +18,7 @@ const rootReducer = combineReducers({
   alert: alertReducer,
   product: productReducer,
   cart: cartReducer,
-  review: reviewReducer
+  review: reviewReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

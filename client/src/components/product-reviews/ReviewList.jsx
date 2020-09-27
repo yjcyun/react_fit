@@ -3,9 +3,9 @@ import styled from 'styled-components'
 import { FiUser, FiThumbsUp, FiThumbsDown } from 'react-icons/fi'
 import StarRatings from 'react-star-ratings'
 import { connect } from 'react-redux'
-import { deleteReview } from '../../redux/action/reviewAction'
+import { addLike, deleteReview, removeLike } from '../../redux/action/reviewAction'
 
-const ReviewList = ({ reviews, deleteReview, product }) => {
+const ReviewList = ({ reviews, deleteReview, product, addLike, removeLike }) => {
   return (
     <ReviewListStyled>
       {reviews.map(review => (
@@ -16,7 +16,7 @@ const ReviewList = ({ reviews, deleteReview, product }) => {
               <span>Review by {review.user.name}</span>
             </div>
             <div className='review-actions'>
-            {/* FIXME: product does not update when review is deleted */}
+              {/* FIXME: product does not update when review is deleted */}
               <span onClick={() => deleteReview(product.id, review.id)}>Delete</span>
             </div>
           </div>
@@ -35,8 +35,11 @@ const ReviewList = ({ reviews, deleteReview, product }) => {
           </div>
           <div className='like'>
             <p>Was this review helpful to you?</p>
-            <button><FiThumbsUp className='icon' />1</button>
-            <button><FiThumbsDown className='icon' />0</button>
+            <button onClick={() => addLike(product.id, review.id)}>
+              <FiThumbsUp className='icon' />
+              {review.likes.length}
+            </button>
+            <button onClick={() => removeLike(product.id, review.id)}><FiThumbsDown className='icon' />0</button>
           </div>
         </div>
       ))}
@@ -109,4 +112,6 @@ const ReviewListStyled = styled.div`
   }
 `
 
-export default connect(null, { deleteReview })(ReviewList)
+
+
+export default connect(null, { deleteReview, addLike, removeLike })(ReviewList)
