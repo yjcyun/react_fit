@@ -25,7 +25,14 @@ const ImagesStyled = styled.div`
   grid-template-columns: 1fr 3fr;
   .thumbnail{
     width: 80%;
+    img{
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+      :foucs {
+        outline: none!important;
+      }
+    }
+
   }
   
   .image-cover {

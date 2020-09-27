@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { FiShoppingCart, FiHeart, FiZoomIn } from 'react-icons/fi'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
+
 const ShopItem = ({ product }) => {
   return (
     <ProductItem>
@@ -10,13 +10,6 @@ const ShopItem = ({ product }) => {
           <img src={product.imageCover} alt={product.name} className='img-cover' />
           <div className='img-hover'>
             <img src={product.images[1]} alt={product.name} />
-            <div className='hover-footer'>
-              <div className='footer-icon-wrapper'>
-                <FiShoppingCart className='footer-icon' />
-                <FiZoomIn className='footer-icon' />
-                <FiHeart className='footer-icon' />
-              </div>
-            </div>
           </div>
         </div>
       </Link>
@@ -48,27 +41,6 @@ const ProductItem = styled.div`
   }
   .product-cover:hover .img-hover{
     opacity: 1;
-  }
-  .hover-footer {
-    position: absolute;
-    right: 0;
-    top: 0;
-    padding: 0.5rem;
-    color: var(--dark-clr);
-    .footer-icon-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      width: 100%;
-      .footer-icon {
-        font-size: 1.3rem;
-        transition: all 0.3s;
-        margin: 7px 0;
-      }
-      .footer-icon:hover {
-        color: grey;
-      }
-    } 
   }
   .product-name{
     text-transform: capitalize;

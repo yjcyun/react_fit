@@ -48,7 +48,7 @@ const Navbar = ({
           {!loading && isAuthenticated ? authLinks : guestLinks}
         </LogInAndCart>
       </NavbarStyled>
-      <MobileNavbar />
+      <MobileNavbar cartItemQty={cartItemQty}/>
       {hidden ? null : <SideCart close={toggleSideCart} />}
     </>
   )
@@ -57,15 +57,10 @@ const Navbar = ({
 const NavbarStyled = styled.nav`
   height: 7rem;
   display: flex;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
   background: var(--light-clr);
   justify-content: space-between;
   align-items: center;
   padding: 0 5rem;
-  z-index:100;
   box-shadow:0 10px 30px -10px rgba(0,0,0,0.1);
 
   li{

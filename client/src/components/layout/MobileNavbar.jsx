@@ -2,27 +2,27 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { FiShoppingCart, FiGrid, FiHeart, FiUser } from 'react-icons/fi'
-const mobileNav = (
-  <>
-    <li><Link to='/shop' className='mobile-nav-item'>
-      <FiGrid className='icon' /><span>Shop</span></Link>
-    </li>
-    <li><Link to='/' className='mobile-nav-item'>
-      <FiHeart className='icon' /><span>Wishlist</span></Link>
-    </li>
-    <li><Link to='/' className='mobile-nav-item'>
-      <FiShoppingCart className='icon' /><span>Cart</span></Link>
-    </li>
-    <li><Link to='/my-account' className='mobile-nav-item'>
-      <FiUser className='icon' /><span>My Account</span></Link>
-    </li>
-  </>
-)
 
-const MobileNavbar = () => {
+const MobileNavbar = ({ cartItemQty }) => {
   return (
     <MobileNav>
-      {mobileNav}
+      <li><Link to='/shop' className='mobile-nav-item'>
+        <FiGrid className='icon' /><span>Shop</span></Link>
+      </li>
+      <li>
+        <Link to='/wishlist' className='mobile-nav-item'>
+          <FiHeart className='icon' /><span>Wishlist</span></Link>
+      </li>
+      <li >
+        <Link to='/cart' className='mobile-nav-item  cart-div'>
+          <FiShoppingCart className='icon' />
+          <span>Cart</span>
+          <span className='qty'>{cartItemQty}</span>
+        </Link>
+      </li>
+      <li><Link to='/my-account' className='mobile-nav-item'>
+        <FiUser className='icon' /><span>My Account</span></Link>
+      </li>
     </MobileNav>
   )
 }
@@ -61,6 +61,20 @@ const MobileNav = styled.div`
   }
   .icon {
     font-size: 1.2rem;
+  }
+  .cart-div{
+    position: relative;
+    .qty{
+      position: absolute;
+      top: -8px;
+      right: 15px;
+      border-radius: 50%;
+      background-color: var(--primary-clr);
+      color: var(--light-clr);
+      width: 20px;
+      height: 20px;
+      text-align: center;
+    }
   }
   @media (max-width: 375px) {
     span{
