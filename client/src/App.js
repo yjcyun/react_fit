@@ -13,6 +13,7 @@ import Cart from './components/cart/Cart';
 import Landing from './components/landing/Landing';
 import Layout from './components/layout/Layout';
 import './App.css';
+import ScrollToTop from './components/layout/ScrollToTop';
 
 const App = ({ loadUser }) => {
   if (localStorage.token) {
@@ -25,6 +26,7 @@ const App = ({ loadUser }) => {
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Layout>
         <Switch>
           <Route exact path='/my-account/login' component={Login} />
