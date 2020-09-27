@@ -1,11 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Button = ({ children, type, dark, flex }) =>
+const Button = ({ children, type, dark, flex, disabled }) =>
   <ButtonStyled
     type={type}
     dark={dark}
     flex={flex}
+    disabled={disabled}
   >
     {children}
   </ButtonStyled>
@@ -20,7 +21,7 @@ const ButtonStyled = styled.button`
   letter-spacing: 1px;
   width: ${props => props.flex ? '100%' : 'auto'};
   transition: all 0.2s;
-
+  cursor: ${props => props.disabled ? 'not-allowed' : 'auto'};
   :hover {
     background-color: #222;
     border: ${props => props.dark ? 'none' : '2px solid #222'};

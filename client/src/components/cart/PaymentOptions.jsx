@@ -67,7 +67,7 @@ const PaymentOptions = ({ item, processPayment }) => {
           </div>
         </div>
         <div className='btn-container' onClick={processPayment}>
-          <Button dark>proceed to checkout</Button>
+          <Button dark disabled>proceed to checkout</Button>
         </div>
       </div>
     </PaymentOptionsStyled>
