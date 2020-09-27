@@ -2,20 +2,20 @@ import React from 'react'
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { getProduct } from '../../redux/action/productAction'
+import { addReview, deleteReview, getReviews } from '../../redux/action/reviewAction'
 import styled from 'styled-components'
 import ProductImages from './ProductImages';
 import ProductContent from './ProductContent';
 import Description from './Description'
 import Spinner from '../layout/Spinner'
 import Reviews from '../product-reviews/Reviews'
-import { getReviews } from '../../redux/action/reviewAction'
 
 const Product = ({ match, getProduct, auth: { loading }, product, getReviews, reviews }) => {
   useEffect(() => {
     getProduct(match.params.id);
     getReviews(match.params.id);
   }, [getProduct, match.params.id, getReviews]);
-
+  
   return (
     loading || product === null
       ? <Spinner />
@@ -51,4 +51,4 @@ const mapStateToProps = state => ({
   reviews: state.reviews
 });
 
-export default connect(mapStateToProps, { getProduct, getReviews })(Product)
+export default connect(mapStateToProps, { getProduct, getReviews, deleteReview, addReview })(Product)

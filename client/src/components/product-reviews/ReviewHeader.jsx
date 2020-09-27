@@ -11,7 +11,7 @@ const ReviewHeader = ({ toggleReviewForm, product }) => {
           rating={product.ratingsAverage}
           starDimension='17px'
           starSpacing='0px'
-          starRatedColor='#FDCC0D'
+          starRatedColor='var(--primary-clr)'
         />
         <span className='ratings-avg'>{product.ratingsAverage}</span>
         <span>(based on {product.ratingsQuantity} reviews)</span>

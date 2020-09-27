@@ -84,7 +84,7 @@ exports.deleteReview = async (req, res) => {
       return res.status(401).json({ msg: 'User not authorized' });
     }
     // 3) REMOVE REVIEW
-    await review.remove();
+    // await review.remove();
     res.status(204).json({ msg: 'Review removed' });
 
   } catch (err) {

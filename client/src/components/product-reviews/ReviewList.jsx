@@ -2,43 +2,45 @@ import React from 'react'
 import styled from 'styled-components'
 import { FiUser, FiThumbsUp, FiThumbsDown } from 'react-icons/fi'
 import StarRatings from 'react-star-ratings'
+import { connect } from 'react-redux'
+import { deleteReview } from '../../redux/action/reviewAction'
 
-const ReviewList = ({reviews}) => {
+const ReviewList = ({ reviews, deleteReview, product }) => {
   return (
     <ReviewListStyled>
-    {reviews.map(review => (
-      <div key={review.id} className='each-review'>
-        <div className='user'>
-          <div className='user-name'>
-            <FiUser className='icon' />
-            <span>Review by {review.user.name}</span>
+      {reviews.map(review => (
+        <div key={review.id} className='each-review'>
+          <div className='user'>
+            <div className='user-name'>
+              <FiUser className='icon' />
+              <span>Review by {review.user.name}</span>
+            </div>
+            <div className='review-actions'>
+            {/* FIXME: product does not update when review is deleted */}
+              <span onClick={() => deleteReview(product.id, review.id)}>Delete</span>
+            </div>
           </div>
-          <div className='review-actions'>
-            <span>Edit</span>
-            <span>Delete</span>
+          <div>
+            <StarRatings
+              rating={review.rating}
+              starDimension='17px'
+              starSpacing='0px'
+              starRatedColor='var(--primary-clr)'
+            />
+            <span className='ratings'>{review.rating.toFixed(1)}</span>
+          </div>
+          <div className='review-text'>
+            <h4 className='review-title'>{review.title}</h4>
+            <p>{review.review}</p>
+          </div>
+          <div className='like'>
+            <p>Was this review helpful to you?</p>
+            <button><FiThumbsUp className='icon' />1</button>
+            <button><FiThumbsDown className='icon' />0</button>
           </div>
         </div>
-        <div>
-          <StarRatings
-            rating={review.rating}
-            starDimension='17px'
-            starSpacing='0px'
-            starRatedColor='#FDCC0D'
-          />
-          <span className='ratings'>{review.rating.toFixed(1)}</span>
-        </div>
-        <div className='review-text'>
-          <h4 className='review-title'>{review.title}</h4>
-          <p>{review.review}</p>
-        </div>
-        <div className='like'>
-          <p>Was this review helpful to you?</p>
-          <button><FiThumbsUp className='icon' />1</button>
-          <button><FiThumbsDown className='icon' />0</button>
-        </div>
-      </div>
-    ))}
-  </ReviewListStyled>
+      ))}
+    </ReviewListStyled>
   )
 }
 
@@ -107,4 +109,4 @@ const ReviewListStyled = styled.div`
   }
 `
 
-export default ReviewList
+export default connect(null, { deleteReview })(ReviewList)

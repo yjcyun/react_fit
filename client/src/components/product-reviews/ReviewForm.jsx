@@ -5,24 +5,32 @@ import Button from '../layout/Button'
 import { connect } from 'react-redux'
 import { addReview } from '../../redux/action/reviewAction'
 import { IoIosWarning } from 'react-icons/io'
+import { Link } from 'react-router-dom'
 
-const ReviewForm = ({ openReview, addReview, product, setOpenReview }) => {
+const ReviewForm = ({ openReview, addReview, product, setOpenReview, auth: { isAuthenticated } }) => {
   const [formData, setFormData] = useState({
     rating: 0,
     title: '',
     review: ''
   });
   const [alert, setAlert] = useState(false);
-
+  console.log(isAuthenticated)
   // HANDLE FORM SUBMIT
   const onFormSubmit = (e) => {
     e.preventDefault();
     if (formData.rating === 0 || formData.title === '' || formData.review === '') {
       setAlert(true);
+
+    } else {
+      addReview(product.id, formData);
+      setFormData({
+        rating: 0,
+        title: '',
+        review: ''
+      });
+      setAlert(false);
+      setOpenReview(false);
     }
-    addReview(product.id, formData);
-    setAlert(false);
-    setOpenReview(false);
   }
 
   return (
@@ -64,7 +72,10 @@ const ReviewForm = ({ openReview, addReview, product, setOpenReview }) => {
           />
         </div>
         <div className='btn-container' type='submit'>
-          <Button>Submit</Button>
+          {!isAuthenticated
+            ? <Link to='/my-account/login'><Button>Submit</Button></Link>
+            : <Button>Submit</Button>
+          }
         </div>
       </form>
     </ReviewFormStyled>
@@ -101,4 +112,7 @@ const ReviewFormStyled = styled.div`
   }
 `
 
-export default connect(null, { addReview })(ReviewForm)
+const mapStateToProps = state => ({
+  auth: state.auth
+})
+export default connect(mapStateToProps, { addReview })(ReviewForm)
