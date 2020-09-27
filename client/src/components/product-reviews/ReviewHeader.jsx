@@ -31,7 +31,16 @@ const AverageStars = styled.div`
   .ratings-avg {
     margin: 0 0.5rem;
   }
+  @media(max-width:567px){
+    flex-direction: column;
+    .btn-container{
+      width: 100%;
+      margin-top: 1rem;
+      button {
+        width: 100%;
+      }
+    }
+  }
 `
-
 
 export default ReviewHeader

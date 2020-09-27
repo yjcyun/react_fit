@@ -140,6 +140,7 @@ const ContentStyled = styled.div`
     color: var(--primary-clr);
     font-size: 2rem;
     line-height: 1;
+    margin-top: 0.5rem;
   }
   .summary {
     margin: 1rem 0;
@@ -202,7 +203,5 @@ const ContentStyled = styled.div`
     }
   }
 `
-
-
 
 export default connect(null, { addItem, toggleSideCart })(ProductContent)

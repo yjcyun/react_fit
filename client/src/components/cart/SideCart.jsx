@@ -3,7 +3,7 @@ import { IoIosClose } from 'react-icons/io'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 import { clearItem, toggleSideCart } from '../../redux/action/cartAction'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import emptyCart from '../../assets/shopping-cart.png'
 
 

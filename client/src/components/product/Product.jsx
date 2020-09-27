@@ -33,7 +33,7 @@ const Product = ({ match, getProduct, auth: { loading }, product, getReviews, re
 }
 
 const Main = styled.div`
-  margin: 10rem auto;
+  margin: 4rem auto;
 `
 
 const ProductInfo = styled.section`
@@ -42,8 +42,6 @@ const ProductInfo = styled.section`
   grid-gap: 2rem;
   margin-bottom: 5rem;
 `
-
-
 
 const mapStateToProps = state => ({
   auth: state.auth,
