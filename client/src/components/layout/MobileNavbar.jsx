@@ -14,10 +14,12 @@ const MobileNavbar = ({ cartItemQty }) => {
           <FiHeart className='icon' /><span>Wishlist</span></Link>
       </li>
       <li >
-        <Link to='/cart' className='mobile-nav-item  cart-div'>
-          <FiShoppingCart className='icon' />
+        <Link to='/cart' className='mobile-nav-item '>
+          <div className='cart-div'>
+            <FiShoppingCart className='icon' />
+            <span className='qty'>{cartItemQty}</span>
+          </div>
           <span>Cart</span>
-          <span className='qty'>{cartItemQty}</span>
         </Link>
       </li>
       <li><Link to='/my-account' className='mobile-nav-item'>
@@ -64,10 +66,11 @@ const MobileNav = styled.div`
   }
   .cart-div{
     position: relative;
+    margin-bottom: -9px;
     .qty{
       position: absolute;
       top: -8px;
-      right: 15px;
+      right: -15px;
       border-radius: 50%;
       background-color: var(--primary-clr);
       color: var(--light-clr);

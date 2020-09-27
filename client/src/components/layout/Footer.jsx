@@ -31,14 +31,12 @@ const FooterStyled = styled.footer`
       font-size: 2rem;
     }
   }
-  @media(max-width: 576px) {
+  @media(max-width: 768px) {
     .logo{
       font-size: 1.4rem;
     }
-  }
-  /* @media(max-width: 996px) {
     margin-bottom: 4rem;
-  } */
+  }
 `
 
 export default Footer
