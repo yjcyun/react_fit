@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import Button from '../layout/Button'
 
-const PaymentOptions = ({ item }) => {
+const PaymentOptions = ({ item, processPayment }) => {
   const [coupon, setCoupon] = useState('');
   const [discount, setDiscount] = useState(null);
 
@@ -58,7 +58,7 @@ const PaymentOptions = ({ item }) => {
           {discount &&
             <div className='receipt-content'>
               <span>Discount</span>
-              <span style={{ color: 'tomato' }}>-${(discount*subtotalCalc).toFixed(2)}</span>
+              <span style={{ color: 'tomato' }}>-${(discount * subtotalCalc).toFixed(2)}</span>
             </div>
           }
           <div className='receipt-content'>
@@ -66,7 +66,7 @@ const PaymentOptions = ({ item }) => {
             <strong>${grandtotal.toFixed(2)}</strong>
           </div>
         </div>
-        <div className='btn-container'>
+        <div className='btn-container' onClick={processPayment}>
           <Button dark>proceed to checkout</Button>
         </div>
       </div>

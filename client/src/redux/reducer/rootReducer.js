@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage';
 import { alertReducer } from './alertReducer';
 import { authReducer } from './authReducer';
 import { cartReducer } from './cartReducer';
+import { checkoutReducer } from './checkoutReducer';
 import { productReducer } from './productReducer';
 import { reviewReducer } from './reviewReducer';
 
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   product: productReducer,
   cart: cartReducer,
   review: reviewReducer,
+  pay: checkoutReducer
 });
 
 export default persistReducer(persistConfig, rootReducer);

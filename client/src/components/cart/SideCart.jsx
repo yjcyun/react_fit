@@ -3,10 +3,11 @@ import { IoIosClose } from 'react-icons/io'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 import { clearItem, toggleSideCart } from '../../redux/action/cartAction'
+import { Link, Redirect } from 'react-router-dom'
 import emptyCart from '../../assets/shopping-cart.png'
-import { Link } from 'react-router-dom'
 
-const SideCart = ({ cart, close, clearItem, toggleSideCart }) => {
+
+const SideCart = ({ cart, close, clearItem, toggleSideCart, auth: { isAuthenticated } }) => {
   let subtotalCalc = null;
   cart.cartItems.map(calc => {
     const subtotal = calc.price * calc.quantity;
@@ -49,7 +50,13 @@ const SideCart = ({ cart, close, clearItem, toggleSideCart }) => {
             </div>
             <div className='buttons'>
               <Link to='/cart' onClick={() => toggleSideCart()}><button>view cart</button></Link>
-              <button className='checkout-btn'>checkout</button>
+              <div>
+                {!isAuthenticated
+                  ? <button className='checkout-btn'>Log in to checkout</button>
+                  : <button className='checkout-btn'>checkout</button>
+                }
+              </div>
+
             </div>
           </Footer>
         }
@@ -197,7 +204,9 @@ const Footer = styled.div`
 `
 
 const mapStateToProps = state => ({
-  cart: state.cart
+  cart: state.cart,
+  auth: state.auth
 });
+
 
 export default connect(mapStateToProps, { clearItem, toggleSideCart })(SideCart)
