@@ -119,6 +119,28 @@ const PaymentOptionsStyled = styled.div`
       }
     }
   }
+  @media(max-width: 768px){
+    flex-direction:column;
+    .coupon {
+      margin-bottom: 2rem;
+      input {
+        width: 100%;
+        margin-bottom: 0.5rem;
+      }
+      .btn-container {
+        button{
+          width: 100%;
+        }
+      }
+      .coupon-form{
+        display: flex;
+        flex-direction: column;
+      }
+    }
+    .cart-totals {
+      width: 100%;
+    }
+  }
 `
 
 export default PaymentOptions

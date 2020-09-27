@@ -101,9 +101,6 @@ exports.updateLikes = async (req, res) => {
   try {
     const review = await Review.findById(req.params.id);
 
-    // CHECk IF THE REVIEW HAS BEEN UNLIKED BY THIS USER
-    const isUnlikedByUser = review.unlikes.filter(({ user }) => user.toString() === req.user.id).length > 0;
-
     // CHECK IF THE REVIEW HAS ALREADY BEEN LIKED BY THIS USER
     const isLikedByUser = review.likes.filter(({ user }) => user.toString() === req.user.id).length > 0;
 
@@ -126,7 +123,7 @@ exports.updateUnlikes = async (req, res) => {
 
     // 1) CHECK IF THE REVIEW HAS ALREADY BEEN UNLIKED BY THIS USER
     const isUnlikedByUser = review.unlikes.filter(({ user }) => user.toString() === req.user.id).length > 0;
-    console.log(isUnlikedByUser);
+
     review.unlikes = isUnlikedByUser
       ? review.unlikes.filter(({ user }) => user.toString() !== req.user.id)
       : [...review.unlikes, { user: req.user.id }]

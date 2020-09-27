@@ -7,7 +7,7 @@ import ReviewList from './ReviewList'
 import ReviewHeader from './ReviewHeader'
 import styled from 'styled-components'
 
-const Reviews = ({ product, reviews: { loading, reviews } }) => {
+const Reviews = ({ product, reviews: { loading, reviews }, auth }) => {
   const [openReview, setOpenReview] = useState(false);
 
   // TOGGLE REVIEW FORM BOX
@@ -24,7 +24,7 @@ const Reviews = ({ product, reviews: { loading, reviews } }) => {
             toggleReviewForm={toggleReviewForm}
           />
           <ReviewForm openReview={openReview} product={product} setOpenReview={setOpenReview} />
-          <ReviewList reviews={reviews} product={product} />
+          <ReviewList reviews={reviews} product={product} auth={auth}/>
         </ReviewsStyled>
       </>
   )
@@ -49,7 +49,8 @@ const ReviewsStyled = styled.section`
 `
 
 const mapStateToProps = state => ({
-  reviews: state.review
+  reviews: state.review,
+  auth: state.auth
 });
 
 export default connect(mapStateToProps, { getReviews })(Reviews)

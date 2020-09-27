@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 const AccountLayout = ({ children }) => {
   return (
-    <LayoutStyled>
+    <LayoutStyled className='container'>
       <Sidebar>
         <SidebarContent>
           <h3>my account</h3>

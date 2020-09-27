@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { FiMinus, FiPlus, FiHeart } from 'react-icons/fi'
 import { UniqueColor } from './UniqueColor'
-import { addItem } from '../../redux/action/cartAction'
+import { addItem, toggleSideCart } from '../../redux/action/cartAction'
 import { UniqueSize } from './UniqueSize'
 import StarRatings from 'react-star-ratings'
 import Button from '../layout/Button'
 import styled from 'styled-components'
 
-const ProductContent = ({ product, addItem }) => {
+const ProductContent = ({ product, addItem, toggleSideCart }) => {
   const [qty, setQty] = useState(1);
   const [color, setColor] = useState(null);
   const [size, setSize] = useState(null);
@@ -88,6 +88,7 @@ const ProductContent = ({ product, addItem }) => {
 
           {color && size
             ? <div className='add-to-cart' onClick={() => {
+              toggleSideCart();
               addItem(product, qty, color, size);
               setWarning('');
             }}>
@@ -204,4 +205,4 @@ const ContentStyled = styled.div`
 
 
 
-export default connect(null, { addItem })(ProductContent)
+export default connect(null, { addItem, toggleSideCart })(ProductContent)

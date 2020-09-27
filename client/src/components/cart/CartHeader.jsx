@@ -41,6 +41,9 @@ const CartHeaderStyled = styled.div`
       width: 8%;
     }
   }
+  @media(max-width: 576px) {
+    display: none;
+  }
 `
 
 export default CartHeader

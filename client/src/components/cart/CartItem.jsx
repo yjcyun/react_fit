@@ -4,7 +4,7 @@ import { IoIosClose } from 'react-icons/io'
 import styled from 'styled-components'
 
 const CartItem = ({ item, removeItem, addItem, clearItem }) => {
-  
+
   return (
     <CartItemStyled>
       <div className='product'>
@@ -17,30 +17,36 @@ const CartItem = ({ item, removeItem, addItem, clearItem }) => {
           <span>Size: {item.size}</span>
         </div>
       </div>
-      <div className='price'>${item.price.toFixed(2)}</div>
-      <div className='quantity-selector'>
-        <button
-          className='minus'
-          onClick={() => removeItem(item, item.quantity)}
-        >
-          <FiMinus className='icon' />
-        </button>
-        <span className='amount'>
-          {item.quantity}
-        </span>
-        <button
-          className='plus'
-          onClick={() => addItem(item, item.quantity, item.color, item.size)}
-        >
-          <FiPlus className='icon' />
-        </button>
-      </div>
+      <div className='product-options'>
+        <div className='price'>
+          <label>Each</label>
+        ${item.price.toFixed(2)}
+        </div>
+        <div className='quantity-selector'>
+          <button
+            className='minus'
+            onClick={() => removeItem(item, item.quantity)}
+          >
+            <FiMinus className='icon' />
+          </button>
+          <span className='amount'>
+            {item.quantity}
+          </span>
+          <button
+            className='plus'
+            onClick={() => addItem(item, item.quantity, item.color, item.size)}
+          >
+            <FiPlus className='icon' />
+          </button>
+        </div>
 
-      <div className='total'>
-        ${(item.quantity * item.price).toFixed(2)}
-      </div>
-      <div className='remove icon' onClick={() => clearItem(item)}>
-        <IoIosClose />
+        <div className='total'>
+          <label>Total</label>
+          ${(item.quantity * item.price).toFixed(2)}
+        </div>
+        <div className='remove icon' onClick={() => clearItem(item)}>
+          <IoIosClose />
+        </div>
       </div>
     </CartItemStyled >
   )
@@ -65,12 +71,20 @@ const CartItemStyled = styled.div`
     width: 17%;
     padding-right: 10px;
   }
+  .product-options{
+    width:57.5%;
+    display: flex;
+    justify-content: space-between;
+  }
   .price,.quantity-selector,.total{
-    width: 16%;
+    width: 27.7%;
     text-align: center;
   }
+  label{
+    display: none;
+  }
   .remove {
-    width: 8%;
+    width: 14%;
     text-align: center;
   }
   .quantity-selector{
@@ -102,6 +116,42 @@ const CartItemStyled = styled.div`
   .icon {
     font-size: 1.5rem;
     margin-top: -3px;
+  }
+  @media(max-width:576px){
+    flex-direction: column;
+    position: relative;
+    margin-top: 1rem;
+    .product {
+      width: 100%;
+      justify-content: flex-start;
+       margin-bottom: 1rem;
+    }
+    .img-container{
+      width: 25%;
+    }
+    .product-options {
+      width: 100%;
+      justify-content: center;
+      .remove {
+        position: absolute;
+        top: 0;
+        right: -1rem;
+      }
+    }
+    label{
+      display: block;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+    }
+    .price, .total{
+      width: 33%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+    }
+    .quantity-selector {
+      width: 33%;
+    }
   }
 `
 

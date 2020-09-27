@@ -11,13 +11,15 @@ import MobileNavbar from './MobileNavbar'
 const Navbar = ({
   auth: { isAuthenticated, loading },
   cart: { hidden, cartItems }, logout, toggleSideCart }) => {
+  // CALCULATE SUM OF ITEM QTY
+  const cartItemQty = cartItems.reduce((accumulatedQnt, cartItem) => accumulatedQnt + cartItem.quantity, 0);
 
   const authLinks = (
     <>
       <li className='login-register'><Link to='/my-account'>My Account</Link>/</li>
       <li className='login-register' onClick={() => logout()}>Logout</li>
       <li onClick={toggleSideCart} className='cart-div'>
-        <FiShoppingCart className='icon' /><span className='qty'>{cartItems.length}</span>
+        <FiShoppingCart className='icon' /><span className='qty'>{cartItemQty}</span>
       </li>
     </>
   );
@@ -27,7 +29,7 @@ const Navbar = ({
       <li className='login-register'><Link to='/my-account/login'>Login</Link>/</li>
       <li className='login-register'><Link to='/my-account/register'>Register</Link></li>
       <li onClick={toggleSideCart} className='cart-div'>
-        <FiShoppingCart className='icon' /><span className='qty'>{cartItems.length}</span>
+        <FiShoppingCart className='icon' /><span className='qty'>{cartItemQty}</span>
       </li>
     </>
   );

@@ -2,11 +2,17 @@ import React from 'react'
 import { IoIosClose } from 'react-icons/io'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
-import { clearItem } from '../../redux/action/cartAction'
+import { clearItem, toggleSideCart } from '../../redux/action/cartAction'
 import emptyCart from '../../assets/shopping-cart.png'
 import { Link } from 'react-router-dom'
 
-const SideCart = ({ cart, close, clearItem }) => {
+const SideCart = ({ cart, close, clearItem, toggleSideCart }) => {
+  let subtotalCalc = null;
+  cart.cartItems.map(calc => {
+    const subtotal = calc.price * calc.quantity;
+    return subtotalCalc += subtotal;
+  });
+
   return (
     <CartOverlay onClick={close}>
       <CartStyled onClick={e => e.stopPropagation()}>
@@ -30,7 +36,7 @@ const SideCart = ({ cart, close, clearItem }) => {
                 </li>
               ))
               : <div className='empty'>
-                <img src={emptyCart} alt='empty cart'/> No products in the cart.
+                <img src={emptyCart} alt='empty cart' /> No products in the cart.
                 </div>
             }
           </ul>
@@ -39,10 +45,10 @@ const SideCart = ({ cart, close, clearItem }) => {
           <Footer>
             <div className='subtotal'>
               <p>subtotal:</p>
-              <p className='price'>$12.00</p>
+              <p className='price'>${subtotalCalc}</p>
             </div>
             <div className='buttons'>
-              <Link to='/cart'><button>view cart</button></Link>
+              <Link to='/cart' onClick={() => toggleSideCart()}><button>view cart</button></Link>
               <button className='checkout-btn'>checkout</button>
             </div>
           </Footer>
@@ -194,4 +200,4 @@ const mapStateToProps = state => ({
   cart: state.cart
 });
 
-export default connect(mapStateToProps, { clearItem })(SideCart)
+export default connect(mapStateToProps, { clearItem, toggleSideCart })(SideCart)
